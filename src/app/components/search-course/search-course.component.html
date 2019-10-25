@@ -1,4 +1,10 @@
 <div class="sc-main-content">
-    <input type="text" name="search-name" id="search-input">
-    <button>search</button>
+    <input 
+        type="text" 
+        name="search-name" 
+        id="search-input"  
+        [(ngModel)]="searchText" 
+        (keydown)="findCourseEnter($event)">
+        
+    <button (click)="findCourseClick()">search</button>
 </div>
