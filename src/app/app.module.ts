@@ -15,6 +15,7 @@ import { FakeLogoComponent } from './components/fake-logo/fake-logo.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { SearchCourseComponent } from './components/search-course/search-course.component';
 import { UserSectionComponent } from './components/user-section/user-section.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { UserSectionComponent } from './components/user-section/user-section.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

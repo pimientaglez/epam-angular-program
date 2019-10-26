@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-course',
@@ -11,7 +11,7 @@ export class CourseComponent implements Course {
   public creationDate: Date;
   public duration:number;
   public description:string;
-  
+  @Input() course: Course;
   constructor() { }
 
   ngOnInit() {
