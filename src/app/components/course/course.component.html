@@ -1,15 +1,15 @@
 <div class="cr-main-content">
     <div class="course-info">
         <div class="course-title">
-            <h1>Video Course 1. Name Tag</h1>
-            <div class="course-calendar"><span><i class="material-icons">calendar_today</i> 9 Nov, 2018</span></div>
-            <div class="course-time"><span><i class="material-icons">access_time</i> 1h 28min</span></div>
+            <h1>{{course.title}}</h1>
+            <div class="course-calendar"><span><i class="material-icons">calendar_today</i> {{formattedDate}}</span></div>
+            <div class="course-time"><span><i class="material-icons">access_time</i> {{course.duration}}</span></div>
         </div>
 
-        <p>Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.</p>
+        <p>{{course.description}}</p>
     </div>
     <div class="course-action">
         <button><span><i class="material-icons">edit</i></span> Edit</button>
-        <button><span><i class="material-icons">delete</i></span> Delete</button>
+        <button (click)="deleteCourse(course.id)"><span><i class="material-icons">delete</i></span> Delete</button>
     </div>
 </div>
