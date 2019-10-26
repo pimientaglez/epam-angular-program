@@ -16,6 +16,7 @@ import { AddCourseComponent } from './components/add-course/add-course.component
 import { SearchCourseComponent } from './components/search-course/search-course.component';
 import { UserSectionComponent } from './components/user-section/user-section.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadMoreComponent } from './components/load-more/load-more.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FakeLogoComponent,
     AddCourseComponent,
     SearchCourseComponent,
-    UserSectionComponent
+    UserSectionComponent,
+    LoadMoreComponent
   ],
   imports: [
     BrowserModule,
