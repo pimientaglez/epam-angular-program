@@ -35,9 +35,40 @@ export class CourseListComponent implements OnInit {
       description:"Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester."
     }
   ]
-  constructor() { }
+  constructor() { 
+    console.log('constructor')
+  }
 
   ngOnInit() {
+    console.log('ngOnInit')
+  }
+  
+  ngOnChanges()	{
+    console.log('ngOnChanges')
+  }
+
+  ngDoCheck() {
+    console.log('ngDoCheck')
+  }
+
+  ngAfterContentInit() {
+    console.log('ngAfterContentInit')
+  }
+
+  ngAfterContentChecked() {
+    console.log('ngAfterContentChecked')
+  }
+
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit')
+  }
+
+  ngAfterViewChecked() {
+    console.log('ngAfterViewChecked')
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy')
   }
 
   deleteCourse(id){
