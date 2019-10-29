@@ -32,13 +32,13 @@ import { LoadMoreComponent } from './components/load-more/load-more.component';
     AddCourseComponent,
     SearchCourseComponent,
     UserSectionComponent,
-    LoadMoreComponent
+    LoadMoreComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
