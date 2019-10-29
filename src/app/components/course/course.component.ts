@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -15,8 +15,6 @@ export class CourseComponent implements Course {
   formattedDate: string;
   @Input() course: Course;
   @Output() delete: EventEmitter<number> = new EventEmitter<number>()
-
-  constructor() { }
 
   ngOnInit() {
     this.formattedDate = moment(this.course.creationDate).format('DD MMM, YYYY')
