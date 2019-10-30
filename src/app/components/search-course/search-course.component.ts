@@ -9,9 +9,7 @@ export class SearchCourseComponent  {
   public searchText: string = ' '
 
   findCourseEnter(event?){
-    if (event.key === "Enter") {
-      console.log('This is the search text from enter key: ',event.target.value);
-    }
+    console.log('This is the search text from enter key: ',event.target.value);
   }
   findCourseClick(){
     console.log('This is the search text from search button: ',this.searchText)

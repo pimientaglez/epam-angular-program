@@ -4,7 +4,7 @@
         name="search-name" 
         id="search-input"  
         [(ngModel)]="searchText" 
-        (keydown)="findCourseEnter($event)">
+        (keydown.enter)="findCourseEnter($event)">
         
     <button (click)="findCourseClick()" mat-flat-button>Search</button>
 </div>
