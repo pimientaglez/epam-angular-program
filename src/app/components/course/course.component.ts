@@ -6,12 +6,7 @@ import * as moment from 'moment';
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.sass']
 })
-export class CourseComponent implements Course {
-  public id:number;
-  public title:string;
-  public creationDate: Date;
-  public duration:string;
-  public description:string;
+export class CourseComponent{
   formattedDate: string;
   @Input() course: Course;
   @Output() delete: EventEmitter<number> = new EventEmitter<number>()
