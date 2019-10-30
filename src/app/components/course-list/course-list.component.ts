@@ -47,7 +47,7 @@ export class CourseListComponent implements OnInit {
     console.log('ngOnDestroy')
   }
 
-  deleteCourse(id){
+  deleteCourse(id: number){
     console.log('Delete course with ID: ', id)
   }
 }

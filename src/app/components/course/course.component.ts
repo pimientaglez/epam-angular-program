@@ -20,7 +20,7 @@ export class CourseComponent implements Course {
     this.formattedDate = moment(this.course.creationDate).format('DD MMM, YYYY')
   }
 
-  deleteCourse(id){
+  deleteCourse(id: number){
     this.delete.emit(id);
   }
 }
