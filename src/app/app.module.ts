@@ -11,7 +11,7 @@ import { CoursesPageComponent } from './courses-page/courses-page.component';
 import { SectionComponent } from './components/section/section.component';
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { CourseComponent } from './components/course/course.component';
-import { FakeLogoComponent } from './components/fake-logo/fake-logo.component';
+import { LogoComponent } from './components/logo/logo.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { SearchCourseComponent } from './components/search-course/search-course.component';
 import { UserSectionComponent } from './components/user-section/user-section.component';
@@ -28,7 +28,7 @@ import { LoadMoreComponent } from './components/load-more/load-more.component';
     SectionComponent,
     CourseListComponent,
     CourseComponent,
-    FakeLogoComponent,
+    LogoComponent,
     AddCourseComponent,
     SearchCourseComponent,
     UserSectionComponent,
