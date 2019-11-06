@@ -5,3 +5,4 @@ interface Course{
     duration: string;
     description: string;
 }
+export default Course;

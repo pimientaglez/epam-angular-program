@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-course.component.sass']
 })
 export class SearchCourseComponent  {
-  public searchText: string = ' '
+  public searchText: string;
 
   findCourseEnter(event?){
     console.log('This is the search text from enter key: ',event.target.value);
