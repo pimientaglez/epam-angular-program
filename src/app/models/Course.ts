@@ -1,7 +1,8 @@
 interface Course{
-    id:number;
-    title:string;
+    id: number;
+    title: string;
     creationDate: Date;
-    duration:number;
-    description:string;
+    duration: string;
+    description: string;
 }
+export default Course;

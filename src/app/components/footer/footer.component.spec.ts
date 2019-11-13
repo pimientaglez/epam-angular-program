@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { FooterComponent } from './footer.component';
 
@@ -21,5 +22,11 @@ describe('FooterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render footer content', () => {
+    const p = fixture.debugElement.query(By.css('p'));
+
+    expect(p.nativeElement.textContent.trim()).toBe("Copyright © Videocourses. All rights reserved"); 
   });
 });
