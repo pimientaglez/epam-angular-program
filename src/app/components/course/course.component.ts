@@ -15,8 +15,13 @@ export class CourseComponent implements OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes)
     if(changes['course']){
-      this.formattedDate = moment(changes['course']['currentValue']['creationDate']).format('DD MMM, YYYY')
+      console.log('Creation Date', changes['course']['currentValue']['creationDate'])
+      this.formattedDate = this.formatDate(changes['course']['currentValue']['creationDate'])
     }
+  }
+
+  formatDate(date: Date){
+    return moment(date).format('DD MMM, YYYY');
   }
   deleteCourse(id: number){
     this.delete.emit(id);
