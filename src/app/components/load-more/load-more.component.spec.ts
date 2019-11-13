@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadMoreComponent } from './load-more.component';
+import { By } from '@angular/platform-browser';
 
 describe('LoadMoreComponent', () => {
   let component: LoadMoreComponent;
@@ -22,4 +23,18 @@ describe('LoadMoreComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should call loadMore method',() => {
+    const spy = spyOn(component, 'loadMore');
+    fixture.debugElement.query(By.css('.load-more-text')).triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    expect(spy).toHaveBeenCalled();
+  })
+  it('should call console.log method',() => {
+    const consoleSpy = spyOn(console, 'log');
+    component.loadMore();    
+    fixture.detectChanges();
+
+    expect(consoleSpy).toHaveBeenCalled();
+  })
 });

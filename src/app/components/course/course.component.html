@@ -2,14 +2,14 @@
     <div class="course-info">
         <div class="course-title">
             <h1>{{course.title}}</h1>
-            <div class="course-calendar"><span><i class="material-icons">calendar_today</i> {{formattedDate}}</span></div>
-            <div class="course-time"><span><i class="material-icons">access_time</i> {{course.duration}}</span></div>
+            <div class="course-calendar"><span><i class="material-icons">calendar_today</i> <div>{{formattedDate}}</div></span></div>
+            <div class="course-time"><span><i class="material-icons">access_time</i><div>{{course.duration}}</div> </span></div>
         </div>
 
         <p>{{course.description}}</p>
     </div>
     <div class="course-action">
         <button><span><i class="material-icons">edit</i></span> Edit</button>
-        <button (click)="deleteCourse(course.id)"><span><i class="material-icons">delete</i></span> Delete</button>
+        <button class="delete-button" (click)="deleteCourse(course.id)"><span><i class="material-icons">delete</i></span> Delete</button>
     </div>
 </div>

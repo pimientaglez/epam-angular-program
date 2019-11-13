@@ -9,7 +9,7 @@ describe('CourseServiceService', () => {
     const service: CourseServiceService = TestBed.get(CourseServiceService);
     expect(service).toBeTruthy();
   });
-  it('should be created', () => {
+  it('should receive courses array', () => {
     const service: CourseServiceService = TestBed.get(CourseServiceService);
     let courses: Array<Course> = service.getCourses();
     expect(courses.length).toBeGreaterThan(1);
