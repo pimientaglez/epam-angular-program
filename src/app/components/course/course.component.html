@@ -1,7 +1,7 @@
 <div class="cr-main-content" [ngClass]="{ 'top-rated': course.topRated }">
     <div class="course-info">
         <div class="course-title">
-            <h1>{{course.title}} <i *ngIf="course.topRated"class="material-icons">star_border</i></h1>
+            <h1>{{course.title}} <i *ngIf="course.topRated"class="material-icons">stars</i></h1>
             <div class="course-calendar"><span><i class="material-icons">calendar_today</i> <div>{{formattedDate}}</div></span></div>
             <div class="course-time"><span><i class="material-icons">access_time</i><div>{{course.duration}}</div> </span></div>
         </div>
