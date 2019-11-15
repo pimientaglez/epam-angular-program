@@ -2,13 +2,29 @@
     display: block
     width: 100%
     margin: 15px 0
-    input
-        width: 360px
-        height: 40px
+    .search-input-container
+        background-color: white
         border-radius: 3px
         border: solid 1px #d9dbe3
-        background-color: white
-        margin-right: 5px
+        display: inline-block
+        height: 40px
+        i
+            vertical-align: middle
+            margin: 0 3px
+            color: darkgray
+            -webkit-transform: scaleX(-1)
+            transform: scaleX(-1)
+        input
+            width: 340px
+            height: 38px
+            background-color: white
+            border-top-style: hidden
+            border-right-style: hidden
+            border-left-style: hidden
+            border-bottom-style: hidden
+            margin-right: 5px
+        input:focus
+            outline: none
     button
         background-color: #9bc837
         border: none

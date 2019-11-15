@@ -1,10 +1,13 @@
 <div class="sc-main-content">
-    <input 
-        type="text" 
-        name="searchText" 
-        id="search-input"  
-        [(ngModel)]="searchText" 
-        (keydown.enter)="findCourseEnter($event)">
+    <div class="search-input-container">
+        <i class="material-icons">search</i>
+        <input 
+            type="text" 
+            name="searchText" 
+            id="search-input"  
+            [(ngModel)]="searchText" 
+            (keydown.enter)="findCourseEnter($event)">
+    </div>
         
     <button (click)="findCourseClick()" mat-flat-button>Search</button>
 </div>
