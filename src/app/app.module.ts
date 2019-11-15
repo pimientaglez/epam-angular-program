@@ -17,6 +17,7 @@ import { SearchCourseComponent } from './components/search-course/search-course.
 import { UserSectionComponent } from './components/user-section/user-section.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadMoreComponent } from './components/load-more/load-more.component';
+import { CourseAgeDirective } from './directives/course-age.directive';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LoadMoreComponent } from './components/load-more/load-more.component';
     SearchCourseComponent,
     UserSectionComponent,
     LoadMoreComponent,
+    CourseAgeDirective,
   ],
   imports: [
     BrowserModule,
