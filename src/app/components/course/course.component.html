@@ -6,7 +6,7 @@
         <div class="course-title">
             <h1 >{{course.title | uppercase}} <i *ngIf="course.topRated"class="material-icons">stars</i></h1>
             <div class="course-calendar"><span><i class="material-icons">calendar_today</i> <div>{{course.creationDate | date: 'dd MMM, yyyy'}}</div></span></div>
-            <div class="course-time"><span><i class="material-icons">access_time</i><div>{{course.duration}}</div> </span></div>
+            <div class="course-time"><span><i class="material-icons">access_time</i><div>{{course.duration | duration}}</div> </span></div>
         </div>
 
         <p>{{course.description}}</p>

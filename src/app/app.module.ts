@@ -18,6 +18,7 @@ import { UserSectionComponent } from './components/user-section/user-section.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadMoreComponent } from './components/load-more/load-more.component';
 import { CourseAgeDirective } from './directives/course-age.directive';
+import { DurationPipe } from './pipes/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CourseAgeDirective } from './directives/course-age.directive';
     UserSectionComponent,
     LoadMoreComponent,
     CourseAgeDirective,
+    DurationPipe,
   ],
   imports: [
     BrowserModule,
