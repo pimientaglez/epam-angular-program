@@ -8,7 +8,7 @@ export class CourseServiceService {
   courses: Array<Course> = [
     {
       id: 1,
-      title:'Video Course 1. Name Tag',
+      title:'Video Course 1. Name Tag Ricardo',
       creationDate: new Date('11-09-2019'),
       duration: 100,
       topRated: true,

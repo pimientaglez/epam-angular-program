@@ -5,7 +5,7 @@ import Course from '../models/Course';
   name: 'filterbytext'
 })
 export class FilterbytextPipe implements PipeTransform {
-
+  public filteredArray: Array<any>;
   transform(courses: Course[], searchText: string): Course[] {
     if(!courses){
       return [];
@@ -13,9 +13,11 @@ export class FilterbytextPipe implements PipeTransform {
     if(!searchText){
       return courses;
     }
-    return courses.filter((course) => {
+    this.filteredArray = courses.filter((course) => {
       return course.title.includes(searchText);
     });
+    console.log('Filtered array',this.filteredArray);
+    return this.filteredArray;
   }
 
 }
