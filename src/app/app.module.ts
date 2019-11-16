@@ -19,6 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadMoreComponent } from './components/load-more/load-more.component';
 import { CourseAgeDirective } from './directives/course-age.directive';
 import { DurationPipe } from './pipes/duration.pipe';
+import { OrderbyPipe } from './pipes/orderby.pipe';
+import { FilterbytextPipe } from './pipes/filterbytext.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { DurationPipe } from './pipes/duration.pipe';
     LoadMoreComponent,
     CourseAgeDirective,
     DurationPipe,
+    OrderbyPipe,
+    FilterbytextPipe,
   ],
   imports: [
     BrowserModule,

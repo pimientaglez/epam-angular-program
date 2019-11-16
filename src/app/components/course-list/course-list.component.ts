@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseServiceService } from '../../services/course-service.service';
 import Course from '../../models/Course'
+import { FilterbytextPipe } from '../../pipes/filterbytext.pipe';
 
 @Component({
   selector: 'app-course-list',
@@ -10,7 +11,7 @@ import Course from '../../models/Course'
 export class CourseListComponent implements OnInit {
   public courses:Array<Course> 
 
-  constructor(private courseService: CourseServiceService) { 
+  constructor(private courseService: CourseServiceService, private filterByText: FilterbytextPipe) { 
     console.log('constructor')
   }
 
