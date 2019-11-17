@@ -11,7 +11,9 @@ import { SearchtextService } from 'src/app/services/searchtext.service';
   providers: [ FilterbytextPipe ]
 })
 export class CourseListComponent implements OnInit {
-  public courses:Array<Course> 
+  public coursesFromService:Array<Course>; 
+  public coursesToDisplay:Array<Course>;
+  public coursesFiltered:Array<Course>;
 
   constructor(
     private courseService: CourseServiceService, 
@@ -22,11 +24,15 @@ export class CourseListComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit')
-    this.courses= this.courseService.getCourses();
-    console.log(this.courses);
+    this.coursesFromService = this.courseService.getCourses();
+    this.coursesToDisplay = this.coursesFromService;
     this.textService.getSearchText().subscribe((text)=>{
-      console.log('searchText subscribed', text);
-      this.courses = this.filterByText.transform(this.courses, text);
+      if(text !== ''){
+        this.coursesFiltered = this.filterByText.transform(this.coursesFromService, text);
+        this.coursesToDisplay = this.coursesFiltered;
+      }else{
+        this.coursesToDisplay = this.coursesFromService;
+      }
     });
   }
   

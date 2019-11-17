@@ -14,9 +14,8 @@ export class FilterbytextPipe implements PipeTransform {
       return courses;
     }
     this.filteredArray = courses.filter((course) => {
-      return course.title.includes(searchText);
+      return course.title.toLowerCase().includes(searchText.toLowerCase());
     });
-    console.log('Filtered array',this.filteredArray);
     return this.filteredArray;
   }
 

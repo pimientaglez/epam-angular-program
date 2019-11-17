@@ -16,6 +16,7 @@ export class SearchCourseComponent  {
     console.log('This is the search text from enter key: ',event.target.value);
   }
   findCourseClick(){
+    this.textService.setSearchText(this.searchText);
     console.log('This is the search text from search button: ',this.searchText)
   }
 }
