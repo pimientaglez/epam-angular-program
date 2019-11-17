@@ -1,8 +1,13 @@
 import { CourseAgeDirective } from './course-age.directive';
+import { ElementRef } from '@angular/core';
+import { inject } from '@angular/core/testing';
 
 describe('CourseAgeDirective', () => {
+
   it('should create an instance', () => {
-    const directive = new CourseAgeDirective();
-    expect(directive).toBeTruthy();
+    inject([ElementRef], (elementRef: ElementRef) => {
+      const directive = new CourseAgeDirective(elementRef);
+      expect(directive).toBeTruthy();
+    });
   });
 });

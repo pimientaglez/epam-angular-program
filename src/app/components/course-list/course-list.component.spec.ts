@@ -4,15 +4,20 @@ import { CourseServiceService } from '../../services/course-service.service';
 import { CUSTOM_ELEMENTS_SCHEMA, ɵConsole } from '@angular/core';
 import Course from '../../models/Course';
 import { CourseComponent } from '../course/course.component';
+import { SearchtextService } from 'src/app/services/searchtext.service';
+import { of } from 'rxjs';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
+  let searchTextService: SearchtextService;
+  let courseService: CourseServiceService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseListComponent ],
+      declarations: [ CourseListComponent, MockPipe ],
       schemas:[CUSTOM_ELEMENTS_SCHEMA],
+      providers: [SearchtextService]
     })
     .compileComponents();
   }));
@@ -20,6 +25,8 @@ describe('CourseListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseListComponent);
     component = fixture.componentInstance;
+    searchTextService = TestBed.get(SearchtextService);
+    courseService = TestBed.get(CourseServiceService);
     fixture.detectChanges();
   });
 
@@ -35,13 +42,15 @@ describe('CourseListComponent', () => {
     expect(consoleSpy).toHaveBeenCalled();
   });
 
-  it('should call ngOnInit and retrieve the courses',() => {
-    const service: CourseServiceService = TestBed.get(CourseServiceService);
-    const courseSpy = spyOn(service, 'getCourses');
+  it('should call ngOnInit and retrieve the courses',() => {    
+    const courseSpy = spyOn(courseService, 'getCourses');
+    const searchTextSpy = spyOn(searchTextService, 'getSearchText').and.returnValue(of('Angular'));
+
     component.ngOnInit();    
     fixture.detectChanges();
-
+    
     expect(courseSpy).toHaveBeenCalled();
+    expect(searchTextSpy).toHaveBeenCalled();
   });
 
   it('should emit delete event', (done) => {
@@ -53,3 +62,12 @@ describe('CourseListComponent', () => {
     course.deleteCourse(1);
   });
 });
+
+import {Pipe, PipeTransform} from '@angular/core';
+
+@Pipe({name: 'orderby'})
+class MockPipe implements PipeTransform {
+    transform(courses: Course[]): Course[] {
+      return courses;
+    }
+}

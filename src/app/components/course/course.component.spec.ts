@@ -3,6 +3,8 @@ import { CourseComponent } from './course.component';
 import { By } from '@angular/platform-browser';
 import { Component, SimpleChange } from '@angular/core';
 import Course from '../../models/Course';
+import { CourseAgeDirective } from '../../directives/course-age.directive';
+import { DurationPipe } from '../../pipes/duration.pipe';
 
 describe('CourseComponent', () => {
   let component: CourseComponent;
@@ -10,13 +12,14 @@ describe('CourseComponent', () => {
   let courseTest = {
     creationDate: new Date('11-09-2018'),
     description: "Learn about where you can find course descriptions,",
-    duration: "1h 28min",
+    duration: 200,
     id: 1,
-    title: "Video Course 1. Name Tag",
+    title: "VIDEO COURSE 2. ANGULAR ADVANCED",
+    topRated: false,
   }
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseComponent ]
+      declarations: [ CourseComponent, CourseAgeDirective, DurationPipe ]
     })
     .compileComponents();
   }));
@@ -41,9 +44,9 @@ describe('CourseComponent', () => {
     const duration = fixture.debugElement.query(By.css('.course-time span div'));
     const description = fixture.debugElement.query(By.css('p'));
 
-    expect(title.nativeElement.textContent.trim()).toBe("Video Course 1. Name Tag");
+    expect(title.nativeElement.textContent.trim()).toBe("VIDEO COURSE 2. ANGULAR ADVANCED");
     expect(date.nativeElement.textContent.trim()).toBe("09 Nov, 2018");
-    expect(duration.nativeElement.textContent.trim()).toBe("1h 28min");
+    expect(duration.nativeElement.textContent.trim()).toBe("3h 20min");
     expect(description.nativeElement.textContent.trim()).toBe("Learn about where you can find course descriptions,");
   });
 
@@ -68,14 +71,15 @@ describe('Test Course Component with Host Component',()=>{
   let courseTest = {
     creationDate: new Date('11-09-2018'),
     description: "Learn about where you can find course descriptions,",
-    duration: "1h 28min",
+    duration: 200,
     id: 1,
-    title: "Video Course 1. Name Tag",
+    title: "VIDEO COURSE 2. ANGULAR ADVANCED",
+    topRated: false,
   }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseComponent, TestHostComponent ]
+      declarations: [ CourseComponent, CourseAgeDirective, DurationPipe, TestHostComponent ]
     });
     fixture = TestBed.createComponent(TestHostComponent);
     testHost = fixture.componentInstance;
@@ -90,9 +94,9 @@ describe('Test Course Component with Host Component',()=>{
     const duration = de.query(By.css('.course-time span div'));
     const description = de.query(By.css('p'));
 
-    expect(title.nativeElement.textContent.trim()).toBe('Video Course 1. Name Tag');
+    expect(title.nativeElement.textContent.trim()).toBe('VIDEO COURSE 2. ANGULAR ADVANCED');
     expect(date.nativeElement.textContent.trim()).toBe("09 Nov, 2018");
-    expect(duration.nativeElement.textContent.trim()).toBe("1h 28min");
+    expect(duration.nativeElement.textContent.trim()).toBe("3h 20min");
     expect(description.nativeElement.textContent.trim()).toBe("Learn about where you can find course descriptions,");
   });
 });
