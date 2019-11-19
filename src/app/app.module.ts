@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { CoursesPageComponent } from './courses-page/courses-page.component';
+import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
 import { SectionComponent } from './components/section/section.component';
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { CourseComponent } from './components/course/course.component';
@@ -23,6 +23,7 @@ import { OrderbyPipe } from './pipes/orderby.pipe';
 import { FilterbytextPipe } from './pipes/filterbytext.pipe';
 import { MatDialogModule, MatButtonModule } from '@angular/material';
 import { DialogConfirmationComponent } from './components/dialog-confirmation/dialog-confirmation.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DialogConfirmationComponent } from './components/dialog-confirmation/di
     OrderbyPipe,
     FilterbytextPipe,
     DialogConfirmationComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
