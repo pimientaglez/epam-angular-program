@@ -40,4 +40,42 @@ export class CourseServiceService {
   getCourses():Array<Course>{
     return this.courses;
   }
+
+  createCourse(course){
+    course.id = this.courses.length;
+    this.courses.push(course);
+  }
+
+  getCourseById(id: number){
+    let courseFiltered: Course[] = [];
+    courseFiltered = this.filterCourse(id);
+    return courseFiltered;
+  }
+
+  updateCourse(course: Course){
+    let courseIndex: number;
+    courseIndex = this.getCourseIndex(course.id);
+    this.courses[courseIndex] = course;
+  }
+  
+  removeItem(id: number){
+    let courseIndex: number;
+    courseIndex = this.getCourseIndex(id)
+    this.courses.splice(courseIndex, 1);
+  }
+
+  private filterCourse(id: number): Course[]{
+    let courseFiltered: Course[] = []
+    courseFiltered = this.courses.filter(item => {
+      item.id === id
+    });
+    return courseFiltered;
+  }
+
+  private getCourseIndex(id){
+    let index = this.courses.findIndex(course => {
+      return course.id === id
+    })
+    return index;
+  }
 }
