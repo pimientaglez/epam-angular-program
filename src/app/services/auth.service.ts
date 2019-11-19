@@ -5,22 +5,23 @@ import User from '../models/User';
   providedIn: 'root'
 })
 export class AuthService {
-  user: User;
+  loginCredentials: Object;
+  user: User = {
+    id: 1,
+    firstName: 'John',
+    lastName: 'Doe'
+  }
+
   constructor() { }
 
-  login(user: User){
-    if(user){
-      this.user = user;
-      localStorage.setItem("user", this.user.toString());
-      localStorage.setItem("token", '12345abcde');
-    }
+  login(credentials){
+    localStorage.setItem("user", JSON.stringify(this.user));
+    localStorage.setItem("token", '12345abcde');
+    console.log('user logged in successfully!')
   }
   logout(){
-    if(this.user){
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-    }
-
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
   }
   isAuthenticated():boolean {
     let user = localStorage.getItem("user");
@@ -29,9 +30,10 @@ export class AuthService {
     }else{
       return false;
     }
+    console.log('user logged out successfully!')
   }
 
-  getUserInfo():User {
+  getUserInfo() {
     return this.user;
   }
 }

@@ -8,5 +8,9 @@
     </div>
     <div 
         *ngIf="isUserLoggedIn && currentPath !== '/login'" 
-        class="logoff">Log off</div>
+        class="logoff"
+        (click)="logOut()">
+        <span><i class="material-icons">power_settings_new</i>
+            Log out</span>
+    </div>
 </div>

@@ -1,3 +1,27 @@
 <div class="login-main-content">
-    login page
+    <div class="login-card">
+        <form action="" (ngSubmit)="login()">
+            <h3>Login</h3>
+            <div class="email-container">
+                <span>E-mail:</span>
+                <br>
+                <div class="input-email">
+                    <input type="text" placeholder="Enter e-mail">
+                </div>
+            </div>
+            <div class="password-container">
+                <span>Password:</span>
+                <br>
+                <div class="input-pass">
+                    <input type="password" placeholder="Enter Password">
+                </div>
+            </div>
+            <div class="forgot">
+                <span><a href="">Forgot password?</a></span>
+            </div>
+            <div class="login-button">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div> 
 </div>

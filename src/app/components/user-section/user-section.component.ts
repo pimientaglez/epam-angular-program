@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import {Router} from '@angular/router';
+import {Router, NavigationEnd} from '@angular/router';
 import { Location } from "@angular/common";
 
 
@@ -22,12 +22,18 @@ export class UserSectionComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.currentPath = this.location.path();
-    this.isUserLoggedIn = this.authService.isAuthenticated();
-    console.log('is user logged in',this.isUserLoggedIn);
-    console.log('current path',this.currentPath);
+    this.router.events.subscribe((val) => {
+      if(val instanceof NavigationEnd) {
+        this.currentPath = this.location.path();
+        this.isUserLoggedIn = this.authService.isAuthenticated();
+      }
+    });
   }
   goToLoginPage(){
     this.router.navigate(['/login']);
+  }
+  logOut(){
+    this.authService.logout();
+    window.location.reload();
   }
 }
