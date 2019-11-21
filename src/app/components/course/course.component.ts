@@ -26,10 +26,11 @@ export class CourseComponent implements OnChanges{
   }
 
   openConfirmationDialog(id: number){
-    this.dialog.open(DialogConfirmationComponent).afterClosed().subscribe(res =>{
-      if(res){
-        this.deleteCourse(id);
-      }
+    this.dialog.open(DialogConfirmationComponent, { data: { title: this.course.title} })
+      .afterClosed().subscribe(res =>{
+        if(res){
+          this.deleteCourse(id);
+        }
     });   
   }
 }

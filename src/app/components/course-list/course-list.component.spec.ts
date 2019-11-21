@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseListComponent } from './course-list.component';
 import { CourseServiceService } from '../../services/course-service.service';
-import { CUSTOM_ELEMENTS_SCHEMA, ɵConsole } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import Course from '../../models/Course';
 import { CourseComponent } from '../course/course.component';
 import { SearchtextService } from 'src/app/services/searchtext.service';

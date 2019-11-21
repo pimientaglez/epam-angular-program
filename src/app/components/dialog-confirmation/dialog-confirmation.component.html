@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Delete Course</h2>
-<mat-dialog-content>Do you really want to delete this course?</mat-dialog-content>
+<mat-dialog-content>Do you really want to delete "{{data.title}}" Course  ?</mat-dialog-content>
 <mat-dialog-actions>
   <button mat-flat-button (click)="onNoClick()">No</button>
-  <button mat-flat-button color='primary' [mat-dialog-close]=true>Yes</button>
+  <button mat-flat-button color='accent' [mat-dialog-close]=true>Yes, delete</button>
 </mat-dialog-actions>

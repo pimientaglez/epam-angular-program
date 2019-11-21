@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-confirmation',
@@ -7,8 +7,10 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./dialog-confirmation.component.sass']
 })
 export class DialogConfirmationComponent implements OnInit {
-
-  constructor(public dialogRef: MatDialogRef<DialogConfirmationComponent>) { }
+  
+  constructor(
+    public dialogRef: MatDialogRef<DialogConfirmationComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }
