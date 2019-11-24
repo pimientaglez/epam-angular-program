@@ -24,6 +24,7 @@ import { FilterbytextPipe } from './pipes/filterbytext.pipe';
 import { MatDialogModule, MatButtonModule } from '@angular/material';
 import { DialogConfirmationComponent } from './components/dialog-confirmation/dialog-confirmation.component';
 import { LoginComponent } from './pages/login/login.component';
+import { NewCourseComponent } from './pages/new-course/new-course.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { LoginComponent } from './pages/login/login.component';
     FilterbytextPipe,
     DialogConfirmationComponent,
     LoginComponent,
+    NewCourseComponent,
   ],
   imports: [
     BrowserModule,

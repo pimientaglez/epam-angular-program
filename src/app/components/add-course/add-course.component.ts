@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-course',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-course.component.sass']
 })
 export class AddCourseComponent{
-
+  
+  constructor(private router: Router){
+  }
+  goToNewCourse(){
+    this.router.navigate(['/new-course']);
+  }
 }
