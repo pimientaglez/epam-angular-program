@@ -65,10 +65,10 @@ export class CourseServiceService {
   }
 
   private filterCourse(id: number): Course[]{
-    let courseFiltered: Course[] = []
-    courseFiltered = this.courses.filter(item => {
-      item.id === id
-    });
+    let courseFiltered: Course[] = [];
+    courseFiltered = this.courses.filter(course => 
+      course.id === id
+    );
     return courseFiltered;
   }
 

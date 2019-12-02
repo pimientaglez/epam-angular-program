@@ -12,7 +12,7 @@
         <p>{{course.description}}</p>
     </div>
     <div class="course-action">
-        <button><span><i class="material-icons">edit</i></span> Edit</button>
+        <button (click)="editCourse(course.id)"><span><i class="material-icons">edit</i></span> Edit</button>
         <button mat-raised-button class="delete-button" (click)="deleteCourse(course.id)"><span><i class="material-icons">delete</i></span> Delete</button>
     </div>
 </div>

@@ -26,6 +26,7 @@ import { DialogConfirmationComponent } from './components/dialog-confirmation/di
 import { LoginComponent } from './pages/login/login.component';
 import { NewCourseComponent } from './pages/new-course/new-course.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { EditComponent } from './pages/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     LoginComponent,
     NewCourseComponent,
     NotFoundComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

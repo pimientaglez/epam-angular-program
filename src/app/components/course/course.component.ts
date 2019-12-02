@@ -10,6 +10,7 @@ import Course from '../../models/Course'
 export class CourseComponent implements OnChanges{
   @Input() course: Course;
   @Output() delete: EventEmitter<number> = new EventEmitter<number>()
+  @Output() edit: EventEmitter<number> = new EventEmitter<number>()
 
   constructor(){
 
@@ -20,5 +21,9 @@ export class CourseComponent implements OnChanges{
 
   deleteCourse(id: number){
     this.delete.emit(id);
+  }
+
+  editCourse(id: number){
+    this.edit.emit(id);
   }
 }

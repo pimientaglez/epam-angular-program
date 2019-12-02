@@ -1,0 +1,53 @@
+<app-breadcrumb [section]="section"></app-breadcrumb>
+<div class="edit-main-content">
+    <div class="edit-course-card">
+        <form action="" (ngSubmit)="createNewCourse()">
+            <h3>Edit Course</h3>
+            <div class="title-container">
+                <span class="title-tag">Title:</span>
+                <span class="required">*required</span>
+                <br>
+                <div class="input-title">
+                    <input name="title" [(ngModel)]="course.title" type="text" placeholder="Enter title">
+                </div>
+            </div>
+            <div class="desc-container">
+                <span class="desc-tag">Description:</span>
+                <span class="required">*required</span>
+                <br>
+                <div class="textarea-desc">
+                    <textarea name="desc" [(ngModel)]="course.description" placeholder="Add description" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+
+            <div class="duration-container">
+                <span class="duration-tag">Duration:</span>
+                <span class="required">*required</span>
+                <br>
+                <div class="input-duration">
+                    <input type="text" placeholder="minutes">
+                </div>
+            </div>
+            <div class="date-container">
+                <span class="date-tag">Date:</span>
+                <span class="required">*required</span>
+                <br>
+                <div class="input-date">
+                    <input type="text" placeholder="mm-dd-yy">
+                </div>
+            </div>
+            <div class="authors-container">
+                <span class="authors-tag">Authors:</span>
+                <span class="required">*required</span>
+                <br>
+                <div class="input-authors">
+                    <input type="text" placeholder="Start typing">
+                </div>
+            </div>
+            <div class="button-containers">
+                <button mat-flat-button class="cancel">Cancel</button>
+                <button mat-flat-button class="save" type="submit">Save</button>
+            </div>
+        </form>
+    </div> 
+</div>

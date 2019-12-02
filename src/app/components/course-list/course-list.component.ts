@@ -5,6 +5,7 @@ import { FilterbytextPipe } from '../../pipes/filterbytext.pipe';
 import { SearchtextService } from 'src/app/services/searchtext.service';
 import { MatDialog } from '@angular/material';
 import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-list',
@@ -21,7 +22,8 @@ export class CourseListComponent implements OnInit {
     private courseService: CourseServiceService, 
     private filterByText: FilterbytextPipe,
     private textService: SearchtextService,
-    public dialog: MatDialog) { 
+    private router: Router,
+    public dialog: MatDialog,) { 
     console.log('constructor')
   }
 
@@ -81,5 +83,10 @@ export class CourseListComponent implements OnInit {
           this.coursesFromService = this.courseService.getCourses();
         }
     });   
+  }
+
+  editCourse(id: number){
+    console.log('editting course')
+    this.router.navigate(['/courses', id])
   }
 }
