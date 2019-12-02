@@ -1,7 +1,11 @@
 <app-breadcrumb [section]="section"></app-breadcrumb>
 <div class="edit-main-content">
     <div class="edit-course-card">
-        <form action="" (ngSubmit)="saveCourse()">
+        <form 
+            action="" 
+            (ngSubmit)="saveCourse()"
+            (keydown.enter)="$event.preventDefault()"
+            (keydown.shift.enter)="$event.preventDefault()">
             <h3>Edit Course</h3>
             <div class="title-container">
                 <span class="title-tag">Title:</span>
@@ -37,7 +41,12 @@
                 <span class="required">*required</span>
                 <br>
                 <div class="input-date">
-                    <input type="text" placeholder="mm-dd-yy" name="date" [ngModel]="course.creationDate | date: 'dd MMM, yyyy'" (ngModelChange)="course.creationDate=$event">
+                    <input 
+                        type="text" 
+                        placeholder="mm-dd-yy" 
+                        name="date" 
+                        [ngModel]="course.creationDate | date: 'dd MMM, yyyy'" 
+                        (ngModelChange)="course.creationDate=$event">
                 </div>
             </div>
             <div class="authors-container">
