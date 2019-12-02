@@ -11,6 +11,10 @@ export class AuthService {
     firstName: 'John',
     lastName: 'Doe'
   }
+  credentials: {email: string, password: string} =  {
+    email: 'user@epam.com', 
+    password: 'pass123'
+  }
 
   constructor() { }
 
@@ -32,8 +36,10 @@ export class AuthService {
     }
     console.log('user logged out successfully!')
   }
-
   getUserInfo() {
     return this.user;
+  }
+  getCredentials(){
+    return this.credentials;
   }
 }

@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   email: string;
   password: string;
+  wrong_creds: boolean = false;
+
   constructor(
     private auth: AuthService,
     private router: Router) { }
@@ -18,7 +20,13 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.auth.login({email:this.email, password:this.password});
-    this.router.navigate(['/'])
+    const creds = this.auth.getCredentials();
+    if(creds.email === this.email && creds.password === this.password){
+      this.wrong_creds = true;
+      this.auth.login({email:this.email, password:this.password});
+      this.router.navigate(['/'])
+    }else{
+      this.wrong_creds = true;
+    }
   }
 }

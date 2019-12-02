@@ -2,12 +2,13 @@
     <div class="login-card">
         <form action="" (ngSubmit)="login()">
             <h3>Login</h3>
+            <div *ngIf="wrong_creds" class="wrong"><p>wrong email or password</p></div>
             <div class="email-container">
                 <span class="email-tag">E-mail:</span>
                 <span class="required">*required</span>
                 <br>
                 <div class="input-email">
-                    <input type="text" placeholder="Enter e-mail">
+                    <input [(ngModel)]="email" name="email" type="text" placeholder="Enter e-mail">
                 </div>
             </div>
             <div class="password-container">
@@ -15,7 +16,7 @@
                 <span class="required">*required</span>
                 <br>
                 <div class="input-pass">
-                    <input type="password" placeholder="Enter Password">
+                    <input [(ngModel)]="password" name="password" type="password" placeholder="Enter Password">
                 </div>
             </div>
             <div class="forgot">
