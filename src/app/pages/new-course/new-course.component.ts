@@ -11,5 +11,7 @@ export class NewCourseComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  createNewCourse(){
+    console.log('Create New Course')
+  }
 }

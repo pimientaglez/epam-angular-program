@@ -1,20 +1,17 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges  } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectionStrategy  } from '@angular/core';
 import Course from '../../models/Course'
-import * as moment from 'moment';
-import {MatDialog, MatDialogConfig} from "@angular/material";
-import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component';
-
 
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.sass']
+  styleUrls: ['./course.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourseComponent implements OnChanges{
   @Input() course: Course;
   @Output() delete: EventEmitter<number> = new EventEmitter<number>()
 
-  constructor(public dialog: MatDialog){
+  constructor(){
 
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -23,14 +20,5 @@ export class CourseComponent implements OnChanges{
 
   deleteCourse(id: number){
     this.delete.emit(id);
-  }
-
-  openConfirmationDialog(id: number){
-    this.dialog.open(DialogConfirmationComponent, { data: { title: this.course.title} })
-      .afterClosed().subscribe(res =>{
-        if(res){
-          this.deleteCourse(id);
-        }
-    });   
   }
 }
