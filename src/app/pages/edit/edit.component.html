@@ -1,7 +1,7 @@
 <app-breadcrumb [section]="section"></app-breadcrumb>
 <div class="edit-main-content">
     <div class="edit-course-card">
-        <form action="" (ngSubmit)="createNewCourse()">
+        <form action="" (ngSubmit)="saveCourse()">
             <h3>Edit Course</h3>
             <div class="title-container">
                 <span class="title-tag">Title:</span>
@@ -21,11 +21,15 @@
             </div>
 
             <div class="duration-container">
-                <span class="duration-tag">Duration:</span>
-                <span class="required">*required</span>
-                <br>
-                <div class="input-duration">
-                    <input type="text" placeholder="minutes">
+                <div class="duration-titles">
+                    <span class="duration-tag">Duration:</span>
+                    <span class="required">*required</span>
+                </div>
+                <div class="duration-cont-input">
+                    <div class="input-duration">
+                        <input type="text" placeholder="minutes" name="duration" [(ngModel)]="course.duration">
+                    </div>
+                    <div class="duration-pipe">{{course.duration | duration}}</div>
                 </div>
             </div>
             <div class="date-container">
@@ -33,7 +37,7 @@
                 <span class="required">*required</span>
                 <br>
                 <div class="input-date">
-                    <input type="text" placeholder="mm-dd-yy">
+                    <input type="text" placeholder="mm-dd-yy" name="date" [ngModel]="course.creationDate | date: 'dd MMM, yyyy'" (ngModelChange)="course.creationDate=$event">
                 </div>
             </div>
             <div class="authors-container">
@@ -41,11 +45,12 @@
                 <span class="required">*required</span>
                 <br>
                 <div class="input-authors">
-                    <input type="text" placeholder="Start typing">
+                    <input (keydown.enter)="addAuthor($event)" type="text" name="authors" placeholder="Start typing">
                 </div>
+                <div class="authors" *ngFor="let author of course.authors; let i = index"><span>{{author}}</span><div class="remove-author" (click)="removeAuthor(i)">+</div></div>
             </div>
             <div class="button-containers">
-                <button mat-flat-button class="cancel">Cancel</button>
+                <button mat-flat-button class="cancel" (click)="backToCourses()">Cancel</button>
                 <button mat-flat-button class="save" type="submit">Save</button>
             </div>
         </form>

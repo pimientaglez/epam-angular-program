@@ -11,8 +11,8 @@ import { CourseServiceService } from 'src/app/services/course-service.service';
   styleUrls: ['./edit.component.sass']
 })
 export class EditComponent implements OnInit {
-  course;
-
+  course: Course;
+  section: string = '';
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -28,9 +28,26 @@ export class EditComponent implements OnInit {
       this.activatedRoute.params.subscribe(params => {
         let id = params['id'];
         this.course = this.courseService.getCourseById(Number(id));
-        console.log(this.course)
+        this.section = this.course.title;
     });
     }
   }
-
+  saveCourse(){
+    this.courseService.updateCourse(this.course);
+    this.router.navigate(['/courses'])
+  }
+  addAuthor(event?){
+    event.preventDefault();
+    this.course.authors.push(event.target.value)
+    event.target.value = ''
+  }
+  removeAuthor(index){
+    console.log(index);
+    this.course.authors.splice(index,1);
+    console.log(this.course.authors);
+    
+  }
+  backToCourses(){
+    this.router.navigate(['/courses'])
+  }
 }
