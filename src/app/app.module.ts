@@ -25,6 +25,7 @@ import { MatDialogModule, MatButtonModule } from '@angular/material';
 import { DialogConfirmationComponent } from './components/dialog-confirmation/dialog-confirmation.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NewCourseComponent } from './pages/new-course/new-course.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { NewCourseComponent } from './pages/new-course/new-course.component';
     DialogConfirmationComponent,
     LoginComponent,
     NewCourseComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

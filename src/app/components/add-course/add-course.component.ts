@@ -11,6 +11,6 @@ export class AddCourseComponent{
   constructor(private router: Router){
   }
   goToNewCourse(){
-    this.router.navigate(['/new-course']);
+    this.router.navigate(['/new']);
   }
 }
