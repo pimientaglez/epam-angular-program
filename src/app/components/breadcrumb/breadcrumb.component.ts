@@ -7,12 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./breadcrumb.component.sass']
 })
 export class BreadcrumbComponent {
-  @Input() section:string;
-  constructor(private router: Router){
-    
-  }
+  @Input() section: string;
+  constructor(private router: Router) { }
 
-  goBack(){
-    this.router.navigate(['/courses'])
+  goBack() {
+    this.router.navigate(['/courses']);
   }
 }
+

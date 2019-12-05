@@ -2,7 +2,7 @@
     <div class="login-card">
         <form action="" (ngSubmit)="login()">
             <h3>Login</h3>
-            <div *ngIf="wrong_creds" class="wrong"><p>wrong email or password</p></div>
+            <div *ngIf="wrongCreds" class="wrong"><p>wrong email or password</p></div>
             <div class="email-container">
                 <span class="email-tag">E-mail:</span>
                 <span class="required">*required</span>

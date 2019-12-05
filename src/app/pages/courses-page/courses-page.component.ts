@@ -7,15 +7,14 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.sass']
 })
-export class CoursesPageComponent implements OnInit{
+export class CoursesPageComponent implements OnInit {
   constructor(
     private auth: AuthService,
-    private router: Router,){
-      
-    }
+    private router: Router, ) { }
+
     ngOnInit() {
-      if(!this.auth.isAuthenticated()){
-        this.router.navigate(['/login'])
+      if (!this.auth.isAuthenticated()) {
+        this.router.navigate(['/login']);
       }
     }
 }

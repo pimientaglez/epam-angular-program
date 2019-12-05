@@ -8,11 +8,11 @@ export class SearchtextService {
 
   constructor() { }
 
-  setSearchText(text: string):void{
+  setSearchText(text: string): void {
     this.searchText.next(text);
   }
 
-  getSearchText(){
+  getSearchText() {
     return this.searchText.asObservable();
   }
 }

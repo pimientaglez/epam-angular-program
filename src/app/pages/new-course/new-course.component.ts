@@ -8,17 +8,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-course.component.sass']
 })
 export class NewCourseComponent implements OnInit {
-  section: string = 'New Course';
-  constructor( 
+  section = 'New Course';
+  constructor(
     private auth: AuthService,
-    private router: Router,) { }
+    private router: Router, ) {}
 
   ngOnInit() {
-    if(!this.auth.isAuthenticated()){
-      this.router.navigate(['/login'])
+    if (!this.auth.isAuthenticated()) {
+      this.router.navigate(['/login']);
     }
   }
-  createNewCourse(){
-    console.log('Create New Course')
+  createNewCourse() {
+    console.log('Create New Course');
   }
 }

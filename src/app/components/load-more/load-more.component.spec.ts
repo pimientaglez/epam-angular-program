@@ -23,18 +23,18 @@ describe('LoadMoreComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should call loadMore method',() => {
+  it('should call loadMore method', () => {
     const spy = spyOn(component, 'loadMore');
     fixture.debugElement.query(By.css('.load-more-text')).triggerEventHandler('click', null);
     fixture.detectChanges();
 
     expect(spy).toHaveBeenCalled();
-  })
-  it('should call console.log method',() => {
+  });
+  it('should call console.log method', () => {
     const consoleSpy = spyOn(console, 'log');
-    component.loadMore();    
+    component.loadMore();
     fixture.detectChanges();
 
     expect(consoleSpy).toHaveBeenCalled();
-  })
+  });
 });

@@ -27,6 +27,6 @@ describe('FooterComponent', () => {
   it('should render footer content', () => {
     const p = fixture.debugElement.query(By.css('p'));
 
-    expect(p.nativeElement.textContent.trim()).toBe("Copyright © Videocourses. All rights reserved"); 
+    expect(p.nativeElement.textContent.trim()).toBe('Copyright © Videocourses. All rights reserved');
   });
 });

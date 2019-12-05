@@ -8,15 +8,11 @@ import { SearchtextService } from 'src/app/services/searchtext.service';
 })
 export class SearchCourseComponent  {
   public searchText: string;
-  constructor(private textService: SearchtextService){
-
-  }
-  findCourseEnter(event?){
+  constructor(private textService: SearchtextService) {}
+  findCourseEnter(event?) {
     this.textService.setSearchText(event.target.value);
-    console.log('This is the search text from enter key: ',event.target.value);
   }
-  findCourseClick(){
+  findCourseClick() {
     this.textService.setSearchText(this.searchText);
-    console.log('This is the search text from search button: ',this.searchText)
   }
 }

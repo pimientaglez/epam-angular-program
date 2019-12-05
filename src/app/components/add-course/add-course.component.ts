@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
   templateUrl: './add-course.component.html',
   styleUrls: ['./add-course.component.sass']
 })
-export class AddCourseComponent{
-  
-  constructor(private router: Router){
+export class AddCourseComponent {
+
+  constructor(private router: Router) {
   }
-  goToNewCourse(){
+  goToNewCourse() {
     this.router.navigate(['/new']);
   }
 }

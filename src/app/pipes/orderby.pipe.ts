@@ -7,9 +7,9 @@ import Course from '../models/Course';
 export class OrderbyPipe implements PipeTransform {
   transform(courses: Course[]): Course[] {
 
-    let sortedCourses = courses.sort((a: any, b: any) => {
-      let date1 = new Date(a.creationDate);
-      let date2 = new Date(b.creationDate);
+    const sortedCourses = courses.sort((a: any, b: any) => {
+      const date1 = new Date(a.creationDate);
+      const date2 = new Date(b.creationDate);
 
       if (date1 < date2) {
           return 1;

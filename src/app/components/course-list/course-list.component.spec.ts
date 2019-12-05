@@ -6,7 +6,14 @@ import Course from '../../models/Course';
 import { CourseComponent } from '../course/course.component';
 import { SearchtextService } from 'src/app/services/searchtext.service';
 import { of } from 'rxjs';
+import {Pipe, PipeTransform} from '@angular/core';
 
+@Pipe({name: 'orderby'})
+class MockPipe implements PipeTransform {
+    transform(courses: Course[]): Course[] {
+      return courses;
+    }
+}
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
@@ -16,7 +23,7 @@ describe('CourseListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CourseListComponent, MockPipe ],
-      schemas:[CUSTOM_ELEMENTS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [SearchtextService]
     })
     .compileComponents();
@@ -34,27 +41,27 @@ describe('CourseListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call console.log method',() => {
+  it('should call console.log method', () => {
     const consoleSpy = spyOn(console, 'log');
-    component.deleteCourse(1);    
+    component.deleteCourse(1);
     fixture.detectChanges();
 
     expect(consoleSpy).toHaveBeenCalled();
   });
 
-  it('should call ngOnInit and retrieve the courses',() => {    
+  it('should call ngOnInit and retrieve the courses', () => {
     const courseSpy = spyOn(courseService, 'getCourses');
     const searchTextSpy = spyOn(searchTextService, 'getSearchText').and.returnValue(of('Angular'));
 
-    component.ngOnInit();    
+    component.ngOnInit();
     fixture.detectChanges();
-    
+
     expect(courseSpy).toHaveBeenCalled();
     expect(searchTextSpy).toHaveBeenCalled();
   });
 
   it('should emit delete event', (done) => {
-    let course = new CourseComponent();
+    const course = new CourseComponent();
     course.delete.subscribe(d => {
         expect(d).toEqual(1);
         done();
@@ -62,12 +69,3 @@ describe('CourseListComponent', () => {
     course.deleteCourse(1);
   });
 });
-
-import {Pipe, PipeTransform} from '@angular/core';
-
-@Pipe({name: 'orderby'})
-class MockPipe implements PipeTransform {
-    transform(courses: Course[]): Course[] {
-      return courses;
-    }
-}

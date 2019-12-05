@@ -12,42 +12,40 @@ import { CourseServiceService } from 'src/app/services/course-service.service';
 })
 export class EditComponent implements OnInit {
   course: Course;
-  section: string = '';
+  section = '';
   constructor(
     private auth: AuthService,
     private router: Router,
     private courseService: CourseServiceService,
-    private activatedRoute: ActivatedRoute,) {
-   }
+    private activatedRoute: ActivatedRoute, ) {}
 
 
   ngOnInit() {
-    if(!this.auth.isAuthenticated()){
-      this.router.navigate(['/login'])
-    }else{
+    if (!this.auth.isAuthenticated()) {
+      this.router.navigate(['/login']);
+    } else {
       this.activatedRoute.params.subscribe(params => {
-        let id = params['id'];
+        const id = params.id;
         this.course = this.courseService.getCourseById(Number(id));
         this.section = this.course.title;
     });
     }
   }
-  saveCourse(){
+  saveCourse() {
     this.courseService.updateCourse(this.course);
-    this.router.navigate(['/courses'])
+    this.router.navigate(['/courses']);
   }
-  addAuthor(event?){
+  addAuthor(event?) {
     event.preventDefault();
-    this.course.authors.push(event.target.value)
-    event.target.value = ''
+    this.course.authors.push(event.target.value);
+    event.target.value = '';
   }
-  removeAuthor(index){
-    console.log(index);
-    this.course.authors.splice(index,1);
+  removeAuthor(index) {
+    this.course.authors.splice(index, 1);
     console.log(this.course.authors);
-    
+
   }
-  backToCourses(){
-    this.router.navigate(['/courses'])
+  backToCourses() {
+    this.router.navigate(['/courses']);
   }
 }

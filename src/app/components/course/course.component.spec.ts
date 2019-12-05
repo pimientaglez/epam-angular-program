@@ -6,17 +6,25 @@ import Course from '../../models/Course';
 import { CourseAgeDirective } from '../../directives/course-age.directive';
 import { DurationPipe } from '../../pipes/duration.pipe';
 
+@Component({
+  template: '<app-course [course]="course"></app-course>'
+})
+class TestHostComponent {
+  course: Course;
+}
+
 describe('CourseComponent', () => {
   let component: CourseComponent;
   let fixture: ComponentFixture<CourseComponent>;
-  let courseTest = {
+  const courseTest = {
     creationDate: new Date('11-09-2018'),
-    description: "Learn about where you can find course descriptions,",
+    description: 'Learn about where you can find course descriptions,',
     duration: 200,
     id: 1,
-    title: "VIDEO COURSE 2. ANGULAR ADVANCED",
+    authors: ['Juan', 'Ricardo'],
+    title: 'VIDEO COURSE 2. ANGULAR ADVANCED',
     topRated: false,
-  }
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CourseComponent, CourseAgeDirective, DurationPipe ]
@@ -44,19 +52,19 @@ describe('CourseComponent', () => {
     const duration = fixture.debugElement.query(By.css('.course-time span div'));
     const description = fixture.debugElement.query(By.css('p'));
 
-    expect(title.nativeElement.textContent.trim()).toBe("VIDEO COURSE 2. ANGULAR ADVANCED");
-    expect(date.nativeElement.textContent.trim()).toBe("09 Nov, 2018");
-    expect(duration.nativeElement.textContent.trim()).toBe("3h 20min");
-    expect(description.nativeElement.textContent.trim()).toBe("Learn about where you can find course descriptions,");
+    expect(title.nativeElement.textContent.trim()).toBe('VIDEO COURSE 2. ANGULAR ADVANCED');
+    expect(date.nativeElement.textContent.trim()).toBe('09 Nov, 2018');
+    expect(duration.nativeElement.textContent.trim()).toBe('3h 20min');
+    expect(description.nativeElement.textContent.trim()).toBe('Learn about where you can find course descriptions,');
   });
 
-  it('should call deleteCourse method',() => {
+  it('should call deleteCourse method', () => {
     const spy = spyOn(component, 'deleteCourse');
     fixture.debugElement.query(By.css('.delete-button')).triggerEventHandler('click', null);
     fixture.detectChanges();
 
     expect(spy).toHaveBeenCalled();
-  })
+  });
 
   it('should emit on click', () => {
     spyOn(component.delete, 'emit');
@@ -66,16 +74,19 @@ describe('CourseComponent', () => {
   });
 });
 
-describe('Test Course Component with Host Component',()=>{
-  let fixture, testHost, element, de;
-  let courseTest = {
+describe('Test Course Component with Host Component', () => {
+  let fixture;
+  let testHost;
+  let de;
+  const courseTest = {
     creationDate: new Date('11-09-2018'),
-    description: "Learn about where you can find course descriptions,",
+    description: 'Learn about where you can find course descriptions,',
     duration: 200,
     id: 1,
-    title: "VIDEO COURSE 2. ANGULAR ADVANCED",
+    authors: ['Juan', 'Ricardo'],
+    title: 'VIDEO COURSE 2. ANGULAR ADVANCED',
     topRated: false,
-  }
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -84,10 +95,9 @@ describe('Test Course Component with Host Component',()=>{
     fixture = TestBed.createComponent(TestHostComponent);
     testHost = fixture.componentInstance;
     de = fixture.debugElement;
-    testHost.course = courseTest
+    testHost.course = courseTest;
     fixture.detectChanges();
   });
-  
   it('should render course info', () => {
     const title = de.query(By.css('h1'));
     const date = de.query(By.css('.course-calendar span div'));
@@ -95,15 +105,9 @@ describe('Test Course Component with Host Component',()=>{
     const description = de.query(By.css('p'));
 
     expect(title.nativeElement.textContent.trim()).toBe('VIDEO COURSE 2. ANGULAR ADVANCED');
-    expect(date.nativeElement.textContent.trim()).toBe("09 Nov, 2018");
-    expect(duration.nativeElement.textContent.trim()).toBe("3h 20min");
-    expect(description.nativeElement.textContent.trim()).toBe("Learn about where you can find course descriptions,");
+    expect(date.nativeElement.textContent.trim()).toBe('09 Nov, 2018');
+    expect(duration.nativeElement.textContent.trim()).toBe('3h 20min');
+    expect(description.nativeElement.textContent.trim()).toBe('Learn about where you can find course descriptions,');
   });
 });
 
-@Component({
-  template: '<app-course [course]="course"></app-course>'
-})
-class TestHostComponent {
-  course: Course;
-}

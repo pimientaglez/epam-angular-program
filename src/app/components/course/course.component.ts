@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectionStrategy  } from '@angular/core';
-import Course from '../../models/Course'
+import Course from '../../models/Course';
 
 @Component({
   selector: 'app-course',
@@ -7,23 +7,23 @@ import Course from '../../models/Course'
   styleUrls: ['./course.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CourseComponent implements OnChanges{
+export class CourseComponent implements OnChanges {
   @Input() course: Course;
-  @Output() delete: EventEmitter<number> = new EventEmitter<number>()
-  @Output() edit: EventEmitter<number> = new EventEmitter<number>()
+  @Output() delete: EventEmitter<number> = new EventEmitter<number>();
+  @Output() edit: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(){
+  constructor() {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
+    console.log(changes);
   }
 
-  deleteCourse(id: number){
+  deleteCourse(id: number) {
     this.delete.emit(id);
   }
 
-  editCourse(id: number){
+  editCourse(id: number) {
     this.edit.emit(id);
   }
 }

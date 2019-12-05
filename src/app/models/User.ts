@@ -1,7 +1,7 @@
-interface User{
-    id:number;
-    firstName:string;
-    lastName:string;
+interface User {
+    id: number;
+    firstName: string;
+    lastName: string;
 }
 
 export default User;
