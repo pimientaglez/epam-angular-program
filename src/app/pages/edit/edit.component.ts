@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import Course from 'src/app/models/Course';
@@ -14,23 +13,19 @@ export class EditComponent implements OnInit {
   course: Course;
   section = '';
   constructor(
-    private auth: AuthService,
     private router: Router,
     private courseService: CourseServiceService,
     private activatedRoute: ActivatedRoute, ) {}
 
 
   ngOnInit() {
-    if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['/login']);
-    } else {
-      this.activatedRoute.params.subscribe(params => {
-        const id = params.id;
-        this.course = this.courseService.getCourseById(Number(id));
-        this.section = this.course.title;
+    this.activatedRoute.params.subscribe(params => {
+      const id = params.id;
+      this.course = this.courseService.getCourseById(Number(id));
+      this.section = this.course.title;
     });
-    }
   }
+
   saveCourse() {
     this.courseService.updateCourse(this.course);
     this.router.navigate(['/courses']);
