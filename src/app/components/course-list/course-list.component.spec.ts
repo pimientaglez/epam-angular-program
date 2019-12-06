@@ -5,8 +5,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import Course from '../../models/Course';
 import { CourseComponent } from '../course/course.component';
 import { SearchtextService } from 'src/app/services/searchtext.service';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import {Pipe, PipeTransform} from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatDialog } from '@angular/material';
 
 @Pipe({name: 'orderby'})
 class MockPipe implements PipeTransform {
@@ -14,17 +16,30 @@ class MockPipe implements PipeTransform {
       return courses;
     }
 }
+export class MdDialogMock {
+  open() {
+    return {
+      afterClosed: () => of(1)
+    };
+  }
+};
+
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
   let searchTextService: SearchtextService;
   let courseService: CourseServiceService;
+  let dialog: MdDialogMock;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
       declarations: [ CourseListComponent, MockPipe ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [SearchtextService]
+      providers: [
+        SearchtextService,
+        {provide: MatDialog, useClass: MdDialogMock,}
+      ]
     })
     .compileComponents();
   }));
@@ -39,14 +54,6 @@ describe('CourseListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should call console.log method', () => {
-    const consoleSpy = spyOn(console, 'log');
-    component.deleteCourse(1);
-    fixture.detectChanges();
-
-    expect(consoleSpy).toHaveBeenCalled();
   });
 
   it('should call ngOnInit and retrieve the courses', () => {

@@ -13,7 +13,7 @@ export class CourseServiceService {
       duration: 100,
       topRated: true,
       authors: ['John', 'Max', 'Ana'],
-      description: 'Learn about where you can find course descriptions, what information they include, how they work',
+      description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ export class CourseServiceService {
       duration: 120,
       topRated: false,
       authors: ['John', 'Max', 'Ana'],
-      description: 'Learn about where you can find course descriptions, what information they include, how they work'
+      description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
     },
     { id: 3,
       title: 'Video Course 3. React Begginers',
@@ -30,7 +30,7 @@ export class CourseServiceService {
       duration: 200,
       topRated: false,
       authors: ['John', 'Max', 'Ana'],
-      description: 'Learn about where you can find course descriptions, what information they include, how they work'
+      description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
     },
     { id: 4,
       title: 'Video Course 4. React Advanced',
@@ -38,7 +38,7 @@ export class CourseServiceService {
       duration: 10,
       topRated: true,
       authors: ['John', 'Max', 'Ana'],
-      description: 'Learn about where you can find course descriptions, what information they include, how they work'
+      description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
     },
   ];
   getCourses(): Array<Course> {
