@@ -10,8 +10,8 @@ describe('NewCourseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ], 
-      declarations: [ 
+      imports: [ RouterTestingModule ],
+      declarations: [
         NewCourseComponent,
         BreadcrumbComponent,
       ]

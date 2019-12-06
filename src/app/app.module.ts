@@ -22,7 +22,7 @@ import { DurationPipe } from './pipes/duration.pipe';
 import { OrderbyPipe } from './pipes/orderby.pipe';
 import { FilterbytextPipe } from './pipes/filterbytext.pipe';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material'
+import { MatButtonModule } from '@angular/material';
 import { DialogConfirmationComponent } from './components/dialog-confirmation/dialog-confirmation.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NewCourseComponent } from './pages/new-course/new-course.component';

@@ -22,14 +22,13 @@ export class MdDialogMock {
       afterClosed: () => of(1)
     };
   }
-};
+}
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
   let searchTextService: SearchtextService;
   let courseService: CourseServiceService;
-  let dialog: MdDialogMock;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -38,7 +37,7 @@ describe('CourseListComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         SearchtextService,
-        {provide: MatDialog, useClass: MdDialogMock,}
+        { provide: MatDialog, useClass: MdDialogMock, }
       ]
     })
     .compileComponents();

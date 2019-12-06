@@ -11,12 +11,12 @@ describe('CoursesPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ 
+      imports: [
         FormsModule,
         RouterTestingModule.withRoutes(
         [{path: 'login', component: LoginComponent}]
       ) ],
-      declarations: [ 
+      declarations: [
         CoursesPageComponent,
         LoginComponent,
       ],

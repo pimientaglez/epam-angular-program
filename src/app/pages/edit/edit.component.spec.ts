@@ -17,7 +17,6 @@ describe('EditComponent', () => {
   let component: EditComponent;
   let fixture: ComponentFixture<EditComponent>;
   let courseService: CourseServiceService;
-  let activatedRoute: ActivatedRoute;
 
   const courseTest = {
     creationDate: new Date('11-09-2018'),
@@ -31,7 +30,7 @@ describe('EditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         EditComponent,
         BreadcrumbComponent,
         DurationPipe
@@ -56,7 +55,7 @@ describe('EditComponent', () => {
   });
 
   it('should create', () => {
-    const courseSpy = spyOn(courseService, 'getCourseById')
+    const courseSpy = spyOn(courseService, 'getCourseById');
 
     component.ngOnInit();
     component.course = courseTest;
