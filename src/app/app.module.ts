@@ -28,6 +28,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { NewCourseComponent } from './pages/new-course/new-course.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { EditComponent } from './pages/edit/edit.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { EditComponent } from './pages/edit/edit.component';
     BrowserAnimationsModule,
     MatDialogModule,
     MatButtonModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
