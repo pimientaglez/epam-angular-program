@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import User from '../models/User';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { endpoints } from '../endpoints';
+import Token from '../models/Token';
+import Login from '../models/Login';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +16,12 @@ export class AuthService {
     firstName: 'John',
     lastName: 'Doe'
   };
-  credentials: {email: string, password: string} =  {
-    email: 'user@epam.com',
-    password: 'pass123'
-  };
+  loginUrl: string = endpoints.base + endpoints.login;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  login(credentials) {
-    localStorage.setItem('user', JSON.stringify(this.user) );
-    localStorage.setItem('token', '12345abcde');
-    console.log('user logged in successfully!');
+  login(credentials: Login): Observable<Token> {
+    return this.http.post<Token>(this.loginUrl, credentials);
   }
   logout() {
     localStorage.removeItem('user');
@@ -37,8 +37,5 @@ export class AuthService {
   }
   getUserInfo() {
     return this.user;
-  }
-  getCredentials() {
-    return this.credentials;
   }
 }

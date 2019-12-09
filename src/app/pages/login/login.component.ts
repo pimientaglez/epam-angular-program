@@ -17,13 +17,14 @@ export class LoginComponent {
     private router: Router) { }
 
   login() {
-    const creds = this.auth.getCredentials();
-    if (creds.email === this.email && creds.password === this.password) {
-      this.wrongCreds = true;
-      this.auth.login( { email: this.email, password: this.password } );
-      this.router.navigate(['/']);
-    } else {
-      this.wrongCreds = false;
-    }
+      this.auth.login( { login: this.email, password: this.password } ).subscribe(
+       res => {
+          localStorage.setItem('user', this.email );
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/']);
+        }, error => {
+          this.wrongCreds = true;
+        }
+      );
   }
 }
