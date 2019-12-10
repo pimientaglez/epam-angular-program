@@ -29,8 +29,11 @@ export class CourseListComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit');
-    this.coursesFromService = this.courseService.getCourses();
-    this.coursesToDisplay = this.coursesFromService;
+    this.courseService.getCourses().subscribe(courses => {
+      this.coursesFromService = courses;
+      this.coursesToDisplay = courses;
+    });
+
     this.textService.getSearchText().subscribe((text) => {
       if (text !== '') {
         this.coursesFiltered = this.filterByText.transform(this.coursesFromService, text);
@@ -45,14 +48,14 @@ export class CourseListComponent implements OnInit {
   }
 
   openConfirmationDialog(id: number) {
-    const courseIndex = this.coursesToDisplay.findIndex( (course) => course.id === id );
+    /* const courseIndex = this.coursesToDisplay.findIndex( (course) => course.id === id );
     this.dialog.open(DialogConfirmationComponent, { data: { title: this.coursesToDisplay[courseIndex].title } })
       .afterClosed().subscribe(res => {
         if (res) {
           this.courseService.removeItem(id);
           this.coursesFromService = this.courseService.getCourses();
         }
-    });
+    }); */
   }
 
   editCourse(id: number) {

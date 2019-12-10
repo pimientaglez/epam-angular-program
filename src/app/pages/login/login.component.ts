@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { CourseServiceService } from 'src/app/services/course-service.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,15 @@ export class LoginComponent {
 
   constructor(
     private auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private courses: CourseServiceService) { }
 
   login() {
       this.auth.login( { login: this.email, password: this.password } ).subscribe(
-       res => {
+      res => {
           localStorage.setItem('user', this.email );
           localStorage.setItem('token', res.token);
+          this.courses.updateAuthHeader(res.token);
           this.router.navigate(['/']);
         }, error => {
           this.wrongCreds = true;

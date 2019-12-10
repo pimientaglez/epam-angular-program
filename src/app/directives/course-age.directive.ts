@@ -4,14 +4,15 @@ import { Directive, ElementRef, OnInit, Input } from '@angular/core';
   selector: '[courseAge]'
 })
 export class CourseAgeDirective implements OnInit {
-  @Input('courseAge') creationDate: Date;
+  @Input('courseAge') creationDate: string;
   public currentDate: Date;
   public DiffInDays: number;
   constructor(private el: ElementRef) { }
 
   ngOnInit() {
+    const creation = new Date(this.creationDate);
     this.currentDate = this.getCurrentDate();
-    this.DiffInDays = this.getDiffInDays( this.creationDate, this.currentDate );
+    this.DiffInDays = this.getDiffInDays( creation, this.currentDate );
     this.defineAgeCourse(this.DiffInDays);
   }
   getCurrentDate() {

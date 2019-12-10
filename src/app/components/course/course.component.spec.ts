@@ -17,13 +17,13 @@ describe('CourseComponent', () => {
   let component: CourseComponent;
   let fixture: ComponentFixture<CourseComponent>;
   const courseTest = {
-    creationDate: new Date('11-09-2018'),
+    date: new Date('11-09-2018'),
     description: 'Learn about where you can find course descriptions,',
-    duration: 200,
+    length: 200,
     id: 1,
     authors: ['Juan', 'Ricardo'],
-    title: 'VIDEO COURSE 2. ANGULAR ADVANCED',
-    topRated: false,
+    name: 'VIDEO COURSE 2. ANGULAR ADVANCED',
+    isTopRated: false,
   };
   beforeEach(async(() => {
     TestBed.configureTestingModule({

@@ -22,7 +22,7 @@ export class EditComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       const id = params.id;
       this.course = this.courseService.getCourseById(Number(id));
-      this.section = this.course.title;
+      this.section = this.course.name;
     });
   }
 

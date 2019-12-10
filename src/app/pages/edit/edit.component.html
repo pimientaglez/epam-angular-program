@@ -12,7 +12,7 @@
                 <span class="required">*required</span>
                 <br>
                 <div class="input-title">
-                    <input name="title" [(ngModel)]="course.title" type="text" placeholder="Enter title">
+                    <input name="title" [(ngModel)]="course.name" type="text" placeholder="Enter title">
                 </div>
             </div>
             <div class="desc-container">
@@ -31,9 +31,9 @@
                 </div>
                 <div class="duration-cont-input">
                     <div class="input-duration">
-                        <input type="text" placeholder="minutes" name="duration" [(ngModel)]="course.duration">
+                        <input type="text" placeholder="minutes" name="duration" [(ngModel)]="course.length">
                     </div>
-                    <div class="duration-pipe">{{course.duration | duration}}</div>
+                    <div class="duration-pipe">{{course.length | duration}}</div>
                 </div>
             </div>
             <div class="date-container">
@@ -45,8 +45,8 @@
                         type="text" 
                         placeholder="mm-dd-yy" 
                         name="date" 
-                        [ngModel]="course.creationDate | date: 'dd MMM, yyyy'" 
-                        (ngModelChange)="course.creationDate=$event">
+                        [ngModel]="course.date | date: 'dd MMM, yyyy'" 
+                        (ngModelChange)="course.date=$event">
                 </div>
             </div>
             <div class="authors-container">
