@@ -36,8 +36,10 @@ export class CourseListComponent implements OnInit {
 
     this.textService.getSearchText().subscribe((text) => {
       if (text !== '') {
-        this.coursesFiltered = this.filterByText.transform(this.coursesFromService, text);
-        this.coursesToDisplay = this.coursesFiltered;
+        this.courseService.filterCoursesByText(text).subscribe( courses => {
+          this.coursesFiltered = courses;
+          this.coursesToDisplay = this.coursesFiltered;
+        });
       } else {
         this.coursesToDisplay = this.coursesFromService;
       }
