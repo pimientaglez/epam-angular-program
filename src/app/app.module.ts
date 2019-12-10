@@ -28,7 +28,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { NewCourseComponent } from './pages/new-course/new-course.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { EditComponent } from './pages/edit/edit.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from './utils/interceptor';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [DialogConfirmationComponent]
 })

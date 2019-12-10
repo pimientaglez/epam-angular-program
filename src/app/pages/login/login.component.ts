@@ -23,7 +23,6 @@ export class LoginComponent {
       res => {
           localStorage.setItem('user', this.email );
           localStorage.setItem('token', res.token);
-          this.courses.updateAuthHeader(res.token);
           this.router.navigate(['/']);
         }, error => {
           this.wrongCreds = true;
