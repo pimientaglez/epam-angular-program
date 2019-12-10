@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import Course from '../models/Course';
 import { CourseServiceService } from './course-service.service';
+import { Observable } from 'rxjs';
 
 describe('CourseServiceService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
@@ -11,7 +12,7 @@ describe('CourseServiceService', () => {
   });
   it('should receive courses array', () => {
     const service: CourseServiceService = TestBed.get(CourseServiceService);
-    const courses: Array<Course> = service.getCourses();
-    expect(courses.length).toBeGreaterThan(1);
+    const courseSpy = spyOn(service, 'getCourses');
+    expect(courseSpy).toHaveBeenCalled();
   });
 });

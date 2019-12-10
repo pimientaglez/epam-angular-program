@@ -24,7 +24,7 @@ describe('LoadMoreComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should call loadMore method', () => {
-    const spy = spyOn(component, 'loadMore');
+    const spy = spyOn(component, 'load');
     fixture.debugElement.query(By.css('.load-more-text')).triggerEventHandler('click', null);
     fixture.detectChanges();
 
@@ -32,7 +32,7 @@ describe('LoadMoreComponent', () => {
   });
   it('should call console.log method', () => {
     const consoleSpy = spyOn(console, 'log');
-    component.loadMore();
+    component.load();
     fixture.detectChanges();
 
     expect(consoleSpy).toHaveBeenCalled();

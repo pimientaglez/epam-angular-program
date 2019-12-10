@@ -5,19 +5,19 @@ describe('OrderbyPipe', () => {
   const courses: Array<Course> = [
     {
       id: 1,
-      title: 'Video Course 1. Angular Begginers',
-      creationDate: new Date('11-09-2019'),
-      duration: 100,
-      topRated: true,
+      name: 'Video Course 1. Angular Begginers',
+      date: '11-09-2019',
+      length: 100,
+      isTopRated: true,
       authors: ['John', 'Max', 'Ana'],
       description: 'Learn about where you can find course descriptions, what information they include,',
     },
     {
       id: 2,
-      title: 'Video Course 2. Angular Advanced',
-      creationDate: new Date('11-21-2019'),
-      duration: 120,
-      topRated: false,
+      name: 'Video Course 2. Angular Advanced',
+      date: '11-21-2019',
+      length: 120,
+      isTopRated: false,
       authors: ['John', 'Max', 'Ana'],
       description: 'Learn about where you can find course descriptions, what information they include,'
     },
@@ -26,19 +26,19 @@ describe('OrderbyPipe', () => {
   const orderedCourses: Array<Course> = [
     {
       id: 2,
-      title: 'Video Course 2. Angular Advanced',
-      creationDate: new Date('11-21-2019'),
-      duration: 120,
-      topRated: false,
+      name: 'Video Course 2. Angular Advanced',
+      date: '11-21-2019',
+      length: 120,
+      isTopRated: false,
       authors: ['John', 'Max', 'Ana'],
       description: 'Learn about where you can find course descriptions, what information they include,'
     },
     {
       id: 1,
-      title: 'Video Course 1. Angular Begginers',
-      creationDate: new Date('11-09-2019'),
-      duration: 100,
-      topRated: true,
+      name: 'Video Course 1. Angular Begginers',
+      date: '11-09-2019',
+      length: 100,
+      isTopRated: true,
       authors: ['John', 'Max', 'Ana'],
       description: 'Learn about where you can find course descriptions, what information they include,',
     },
@@ -48,7 +48,7 @@ describe('OrderbyPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('should order courses by creationDate', () => {
+  it('should order courses by date', () => {
     expect(pipe.transform(courses)).toEqual(orderedCourses);
   });
 });

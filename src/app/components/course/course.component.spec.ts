@@ -17,7 +17,7 @@ describe('CourseComponent', () => {
   let component: CourseComponent;
   let fixture: ComponentFixture<CourseComponent>;
   const courseTest = {
-    date: new Date('11-09-2018'),
+    date: '11-09-2018',
     description: 'Learn about where you can find course descriptions,',
     length: 200,
     id: 1,
