@@ -8,7 +8,7 @@
         border-radius: 8px
         padding: 24px
         width: 731px
-        height: 590px
+        height: 645px
         margin: 40px auto
         position: relative
         box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08)
@@ -69,33 +69,43 @@
                     outline: none
         .duration-container
             margin: 10px 0
-            display: table
-            width: 30%
-            .duration-tag
-                font-size: 14px
-            .required
-                color: #6c7283
-                float: right
-                font-size: 12px
-            .input-duration
-                background-color: white
-                border-radius: 3px
-                border: solid 1px #d9dbe3
-                display: inline-block
-                height: 40px
+            display: inline-block
+            width: 45%
+            .duration-titles
+                width: 67%
+                .duration-tag
+                    font-size: 14px
+                .required
+                    color: #6c7283
+                    float: right
+                    font-size: 12px
+            .duration-cont-input
                 width: 100%
-                margin-top: 10px
-                input
-                    width: 95%
-                    height: 36px
-                    background-color: white
-                    border-top-style: hidden
-                    border-right-style: hidden
-                    border-left-style: hidden
-                    border-bottom-style: hidden
+                .duration-pipe
+                    display: inline-block
+                    font-size: 14px
+                    color: #525462
                     margin-left: 10px
-                input:focus
-                    outline: none
+                .input-duration
+                    background-color: white
+                    border-radius: 3px
+                    border: solid 1px #d9dbe3
+                    display: inline-block
+                    height: 40px
+                    width: 67%
+                    margin-top: 10px
+                    input
+                        width: 90%
+                        height: 36px
+                        background-color: white
+                        border-top-style: hidden
+                        border-right-style: hidden
+                        border-left-style: hidden
+                        border-bottom-style: hidden
+                        margin-left: 10px
+                    input:focus
+                        outline: none
+
         .date-container
             margin: 10px 0
             display: table
@@ -144,16 +154,44 @@
                 width: 100%
                 margin-top: 10px
                 input
-                    width: 95%
-                    height: 36px
+                    width: 90%
+                .author-service
+                    width: 100%
+                    display: block
+                    position: relative
+                    height: 50px
                     background-color: white
-                    border-top-style: hidden
-                    border-right-style: hidden
-                    border-left-style: hidden
-                    border-bottom-style: hidden
+                    border: 1px solid gray
+                    cursor: pointer
+                    z-index: 1000
+                    .author-name
+                        display: inline-block
+                        margin: 15px
+            .authors
+                display: inline-block
+                background-color: #f2f3f7
+                color: #6c7283
+                height: 50%
+                margin: 5px
+                padding: 5px 10px
+                border-radius: 3px
+                position: relative
+                div.remove-author
                     margin-left: 10px
-                input:focus
-                    outline: none
+                    cursor: pointer
+                    transform: rotate(45deg)
+                    display: inline-block
+            input
+                width: 40%
+                height: 36px
+                background-color: white
+                border-top-style: hidden
+                border-right-style: hidden
+                border-left-style: hidden
+                border-bottom-style: hidden
+                margin-left: 10px
+            input:focus
+                outline: none
         .button-containers
                 display: inline-block
                 width: 100%
@@ -171,3 +209,6 @@
                     width:64px
                     height: 36px
                     margin-left: 12px
+input, textarea
+    color: #525462
+    font-family: 'Source Sans Pro', sans-serif

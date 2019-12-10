@@ -1,14 +1,18 @@
 <app-breadcrumb [section]="section"></app-breadcrumb>
 <div class="new-main-content">
     <div class="new-course-card">
-        <form action="" (ngSubmit)="createNewCourse()">
+        <form 
+            action="" 
+            (ngSubmit)="createNewCourse()"
+            (keydown.enter)="$event.preventDefault()"
+            (keydown.shift.enter)="$event.preventDefault()">
             <h3>New Course</h3>
             <div class="title-container">
                 <span class="title-tag">Title:</span>
                 <span class="required">*required</span>
                 <br>
                 <div class="input-title">
-                    <input type="text" placeholder="Enter title">
+                    <input name="title" [(ngModel)]="newCourse.name" type="text" placeholder="Enter title">
                 </div>
             </div>
             <div class="desc-container">
@@ -16,16 +20,20 @@
                 <span class="required">*required</span>
                 <br>
                 <div class="textarea-desc">
-                    <textarea name="desc" placeholder="Add description" cols="30" rows="10"></textarea>
+                    <textarea name="desc" [(ngModel)]="newCourse.description" placeholder="Add description" cols="30" rows="10"></textarea>
                 </div>
             </div>
 
             <div class="duration-container">
-                <span class="duration-tag">Duration:</span>
-                <span class="required">*required</span>
-                <br>
-                <div class="input-duration">
-                    <input type="text" placeholder="minutes">
+                <div class="duration-titles">
+                    <span class="duration-tag">Duration:</span>
+                    <span class="required">*required</span>
+                </div>
+                <div class="duration-cont-input">
+                    <div class="input-duration">
+                        <input type="text" placeholder="minutes" name="duration" [(ngModel)]="newCourse.length">
+                    </div>
+                    <div class="duration-pipe">{{newCourse.length | duration}}</div>
                 </div>
             </div>
             <div class="date-container">
@@ -33,7 +41,12 @@
                 <span class="required">*required</span>
                 <br>
                 <div class="input-date">
-                    <input type="text" placeholder="mm-dd-yy">
+                    <input 
+                        type="text" 
+                        placeholder="mm-dd-yy" 
+                        name="date" 
+                        [ngModel]="newCourse.date" 
+                        (ngModelChange)="newCourse.date=$event">
                 </div>
             </div>
             <div class="authors-container">
@@ -41,11 +54,22 @@
                 <span class="required">*required</span>
                 <br>
                 <div class="input-authors">
-                    <input type="text" placeholder="Start typing">
+                    <input 
+                        type="text" 
+                        name="author" 
+                        #authorInput
+                        (keydown)="searchAuthors($event)">
+                        <div 
+                            class="author-service"
+                            (click)="addAuthor(author)"
+                            *ngFor="let author of authorsFromService">
+                            <div class="author-name">{{author.name}}</div>
+                        </div>
                 </div>
+                <div class="authors" *ngFor="let author of newCourse.authors; let i = index"><span>{{author.name}}</span><div class="remove-author" (click)="removeAuthor(i)">+</div></div>
             </div>
             <div class="button-containers">
-                <button mat-flat-button class="cancel">Cancel</button>
+                <button mat-flat-button class="cancel" (click)="backToCourses()">Cancel</button>
                 <button mat-flat-button class="save" type="submit">Save</button>
             </div>
         </form>

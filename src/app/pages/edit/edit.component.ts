@@ -38,7 +38,6 @@ export class EditComponent implements OnInit {
   removeAuthor(index) {
     this.course.authors.splice(index, 1);
     console.log(this.course.authors);
-
   }
   backToCourses() {
     this.router.navigate(['/courses']);

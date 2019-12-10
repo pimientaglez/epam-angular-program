@@ -3,4 +3,5 @@ export const endpoints = {
     login: '/auth/login',
     courses: '/courses',
     user: '/auth/userinfo',
+    authors: '/authors'
 };

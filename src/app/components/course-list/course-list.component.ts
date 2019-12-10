@@ -53,14 +53,18 @@ export class CourseListComponent implements OnInit {
   }
 
   openConfirmationDialog(id: number) {
-    /* const courseIndex = this.coursesToDisplay.findIndex( (course) => course.id === id );
-    this.dialog.open(DialogConfirmationComponent, { data: { title: this.coursesToDisplay[courseIndex].title } })
+    const courseIndex = this.coursesToDisplay.findIndex( (course) => course.id === id );
+    this.dialog.open(DialogConfirmationComponent, { data: { title: this.coursesToDisplay[courseIndex].name } })
       .afterClosed().subscribe(res => {
         if (res) {
-          this.courseService.removeItem(id);
-          this.coursesFromService = this.courseService.getCourses();
+          this.courseService.deleteCourse(id).subscribe(res => {
+            this.courseService.getCourses().subscribe(courses => {
+              this.coursesFromService = courses;
+              this.coursesToDisplay = courses;
+            });
+          });
         }
-    }); */
+    });
   }
 
   editCourse(id: number) {
