@@ -5,4 +5,4 @@
     (edit)="editCourse($event)">
 </app-course>
 <div class="no-data-msg" *ngIf="coursesToDisplay.length === 0">No Data. Feel free to add a new Course</div>
-<app-load-more></app-load-more>
+<app-load-more [hidden]="hideLoadMore" (loadMore)="loadMoreCourses($event)"></app-load-more>

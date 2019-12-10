@@ -17,6 +17,7 @@ export class CourseListComponent implements OnInit {
   public coursesFromService: Array<Course>;
   public coursesToDisplay: Array<Course>;
   public coursesFiltered: Array<Course>;
+  private hideLoadMore = false;
 
   constructor(
     private courseService: CourseServiceService,
@@ -39,9 +40,11 @@ export class CourseListComponent implements OnInit {
         this.courseService.filterCoursesByText(text).subscribe( courses => {
           this.coursesFiltered = courses;
           this.coursesToDisplay = this.coursesFiltered;
+          this.hideLoadMore = false;
         });
       } else {
         this.coursesToDisplay = this.coursesFromService;
+        this.hideLoadMore = false;
       }
     });
   }
@@ -62,5 +65,17 @@ export class CourseListComponent implements OnInit {
 
   editCourse(id: number) {
     this.router.navigate(['/courses', id]);
+  }
+
+  loadMoreCourses(load: boolean){
+    if (load) {
+      const count = this.coursesToDisplay.length + 5;
+      this.courseService.getCourses('0', count.toString()).subscribe(courses => {
+        this.coursesToDisplay = courses;
+        if (this.coursesToDisplay.length < count) {
+          this.hideLoadMore = true;
+        }
+      });
+    }
   }
 }

@@ -54,8 +54,11 @@ export class CourseServiceService {
   ];
   constructor(private http: HttpClient) {}
 
-  getCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.coursesUrl).pipe(
+  getCourses(start?: string, count?: string): Observable<Course[]> {
+    const options = !start ? { params: new HttpParams().set('start', '0').set('count', '5') }:
+    { params: new HttpParams().set('start', start).set('count', count) };
+
+    return this.http.get<Course[]>(this.coursesUrl, options).pipe(
       catchError(this.handleError)
     );
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-load-more',
@@ -6,9 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./load-more.component.sass']
 })
 export class LoadMoreComponent {
+  @Output() loadMore: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  loadMore() {
-    console.log('Loading more courses!');
+  load() {
+    this.loadMore.emit(true);
   }
 
 }
