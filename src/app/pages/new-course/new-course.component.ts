@@ -1,8 +1,8 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import Course from 'src/app/models/Course';
 import { CourseServiceService } from 'src/app/services/course-service.service';
-import Author from 'src/app/models/Author';
 import { Router } from '@angular/router';
+import Author from 'src/app/models/Author';
 
 @Component({
   selector: 'app-new-course',
@@ -20,7 +20,7 @@ export class NewCourseComponent{
       date: '',
       length: 0,
       isTopRated: false,
-      authors: [],
+      authors: this.authorsFromService,
       description: '',
   };
   constructor(
@@ -38,8 +38,8 @@ export class NewCourseComponent{
     });
   }
   addAuthor(author) {
-    const found = this.newCourse.authors.find((item) => {
-      return item['id'] === author.id;
+    const found = this.newCourse.authors.find((item: Author) => {
+      return item.id === author.id;
     });
     if (!found) {
       this.newCourse.authors.push(author);
