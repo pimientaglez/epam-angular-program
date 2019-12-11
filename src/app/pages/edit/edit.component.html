@@ -56,7 +56,7 @@
                 <div class="input-authors">
                     <input (keydown.enter)="addAuthor($event)" type="text" name="authors" placeholder="Start typing">
                 </div>
-                <div class="authors" *ngFor="let author of course.authors; let i = index"><span>{{author}}</span><div class="remove-author" (click)="removeAuthor(i)">+</div></div>
+                <div class="authors" *ngFor="let author of course.authors; let i = index"><span>{{author.name}}</span><div class="remove-author" (click)="removeAuthor(i)">+</div></div>
             </div>
             <div class="button-containers">
                 <button mat-flat-button class="cancel" (click)="backToCourses()">Cancel</button>
