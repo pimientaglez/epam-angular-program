@@ -12,6 +12,7 @@ import Author from '../models/Author';
 export class CourseServiceService {
   private coursesUrl: string = endpoints.base + endpoints.courses;
   private authorsUrl: string = endpoints.base + endpoints.authors;
+  DEFAULT_PAGE_COUNT = '5';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -25,7 +26,20 @@ export class CourseServiceService {
       date: '2016-05-31T02:02:36+00:00',
       length: 100,
       isTopRated: true,
-      authors: ['John', 'Max', 'Ana'],
+      authors: [
+        {
+          id: '5b7a846290d6ff6894377fb5',
+          name : 'Decker Albert'
+        },
+        {
+          id: '5b7a84624010db4d640e0099',
+          name: 'Vincent Doyle'
+        },
+        {
+          id: '5b7a8462e720a86db64774e7',
+          name: 'Padilla Berger'
+        }
+      ],
       description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
     },
     {
@@ -34,7 +48,20 @@ export class CourseServiceService {
       date: '2016-05-31T02:02:36+00:00',
       length: 120,
       isTopRated: false,
-      authors: ['John', 'Max', 'Ana'],
+      authors: [
+        {
+          id: '5b7a846290d6ff6894377fb5',
+          name : 'Decker Albert'
+        },
+        {
+          id: '5b7a84624010db4d640e0099',
+          name: 'Vincent Doyle'
+        },
+        {
+          id: '5b7a8462e720a86db64774e7',
+          name: 'Padilla Berger'
+        }
+      ],
       description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
     },
     { id: 3,
@@ -42,7 +69,20 @@ export class CourseServiceService {
       date: '2016-05-31T02:02:36+00:00',
       length: 200,
       isTopRated: false,
-      authors: ['John', 'Max', 'Ana'],
+      authors: [
+        {
+          id: '5b7a846290d6ff6894377fb5',
+          name : 'Decker Albert'
+        },
+        {
+          id: '5b7a84624010db4d640e0099',
+          name: 'Vincent Doyle'
+        },
+        {
+          id: '5b7a8462e720a86db64774e7',
+          name: 'Padilla Berger'
+        }
+      ],
       description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
     },
     { id: 4,
@@ -50,16 +90,31 @@ export class CourseServiceService {
       date: '2016-05-31T02:02:36+00:00',
       length: 10,
       isTopRated: true,
-      authors: ['John', 'Max', 'Ana'],
+      authors: [
+        {
+          id: '5b7a846290d6ff6894377fb5',
+          name : 'Decker Albert'
+        },
+        {
+          id: '5b7a84624010db4d640e0099',
+          name: 'Vincent Doyle'
+        },
+        {
+          id: '5b7a8462e720a86db64774e7',
+          name: 'Padilla Berger'
+        }
+      ],
       description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
     },
   ];
   constructor(private http: HttpClient) {}
 
   getCourses(start?: string, count?: string): Observable<Course[]> {
-    const options = !start ? { params: new HttpParams().set('start', '0').set('count', '5').set('sort', 'date') }:
-    { params: new HttpParams().set('start', start).set('count', count).set('sort', 'date') };
-
+    const startParam = start || '0';
+    const countParam = count || this.DEFAULT_PAGE_COUNT;
+    const options = {
+      params: new HttpParams().set('start', startParam).set('count', countParam).set('sort', 'date')
+    };
     return this.http.get<Course[]>(this.coursesUrl, options).pipe(
       catchError(this.handleError)
     );
@@ -117,7 +172,7 @@ export class CourseServiceService {
       catchError(this.handleError)
     );
   }
-  private handleError(error: HttpErrorResponse) {
+  handleError = (error: HttpErrorResponse) => {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
@@ -127,5 +182,5 @@ export class CourseServiceService {
     }
     return throwError(
       'Something bad happened; please try again later.');
-  };
+  }
 }
