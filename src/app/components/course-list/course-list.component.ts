@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class CourseListComponent implements OnInit {
   public coursesFromService: Array<Course>;
-  public coursesToDisplay: Array<Course>;
+  public coursesToDisplay: Array<Course> = [];
   public coursesFiltered: Array<Course>;
   private hideLoadMore = false;
 
