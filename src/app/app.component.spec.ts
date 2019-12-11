@@ -24,6 +24,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -32,6 +33,7 @@ describe('AppComponent', () => {
         RouterTestingModule,
         FormsModule,
         MatDialogModule,
+        HttpClientTestingModule,
       ],
       declarations: [
         AppComponent,

@@ -9,6 +9,7 @@ export class LoadMoreComponent {
   @Output() loadMore: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   load() {
+    console.log('loading more courses')
     this.loadMore.emit(true);
   }
 

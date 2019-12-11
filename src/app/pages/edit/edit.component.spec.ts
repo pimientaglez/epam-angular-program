@@ -7,6 +7,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CourseServiceService } from 'src/app/services/course-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 class MockActivatedRoute extends ActivatedRoute {
   constructor() {
       super();
@@ -23,7 +25,20 @@ describe('EditComponent', () => {
     description: 'Learn about where you can find course descriptions,',
     length: 200,
     id: 1,
-    authors: ['Juan', 'Ricardo'],
+    authors: [
+      {
+        id: '5b7a846290d6ff6894377fb5',
+        name : 'Decker Albert'
+      },
+      {
+        id: '5b7a84624010db4d640e0099',
+        name: 'Vincent Doyle'
+      },
+      {
+        id: '5b7a8462e720a86db64774e7',
+        name: 'Padilla Berger'
+      }
+    ],
     name: 'VIDEO COURSE 2. ANGULAR ADVANCED',
     isTopRated: false,
   };
@@ -37,7 +52,8 @@ describe('EditComponent', () => {
       ],
       imports: [
         FormsModule,
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientTestingModule,
       ],
       providers: [{
         provide: ActivatedRoute,

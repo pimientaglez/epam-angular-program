@@ -9,7 +9,20 @@ describe('OrderbyPipe', () => {
       date: '11-09-2019',
       length: 100,
       isTopRated: true,
-      authors: ['John', 'Max', 'Ana'],
+      authors: [
+        {
+          id: '5b7a846290d6ff6894377fb5',
+          name : 'Decker Albert'
+        },
+        {
+          id: '5b7a84624010db4d640e0099',
+          name: 'Vincent Doyle'
+        },
+        {
+          id: '5b7a8462e720a86db64774e7',
+          name: 'Padilla Berger'
+        }
+      ],
       description: 'Learn about where you can find course descriptions, what information they include,',
     },
     {
@@ -18,7 +31,20 @@ describe('OrderbyPipe', () => {
       date: '11-21-2019',
       length: 120,
       isTopRated: false,
-      authors: ['John', 'Max', 'Ana'],
+      authors: [
+        {
+          id: '5b7a846290d6ff6894377fb5',
+          name : 'Decker Albert'
+        },
+        {
+          id: '5b7a84624010db4d640e0099',
+          name: 'Vincent Doyle'
+        },
+        {
+          id: '5b7a8462e720a86db64774e7',
+          name: 'Padilla Berger'
+        }
+      ],
       description: 'Learn about where you can find course descriptions, what information they include,'
     },
   ];
@@ -30,7 +56,20 @@ describe('OrderbyPipe', () => {
       date: '11-21-2019',
       length: 120,
       isTopRated: false,
-      authors: ['John', 'Max', 'Ana'],
+      authors: [
+        {
+          id: '5b7a846290d6ff6894377fb5',
+          name : 'Decker Albert'
+        },
+        {
+          id: '5b7a84624010db4d640e0099',
+          name: 'Vincent Doyle'
+        },
+        {
+          id: '5b7a8462e720a86db64774e7',
+          name: 'Padilla Berger'
+        }
+      ],
       description: 'Learn about where you can find course descriptions, what information they include,'
     },
     {
@@ -39,7 +78,20 @@ describe('OrderbyPipe', () => {
       date: '11-09-2019',
       length: 100,
       isTopRated: true,
-      authors: ['John', 'Max', 'Ana'],
+      authors: [
+        {
+          id: '5b7a846290d6ff6894377fb5',
+          name : 'Decker Albert'
+        },
+        {
+          id: '5b7a84624010db4d640e0099',
+          name: 'Vincent Doyle'
+        },
+        {
+          id: '5b7a8462e720a86db64774e7',
+          name: 'Padilla Berger'
+        }
+      ],
       description: 'Learn about where you can find course descriptions, what information they include,',
     },
   ];

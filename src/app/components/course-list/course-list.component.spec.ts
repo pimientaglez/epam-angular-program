@@ -9,6 +9,7 @@ import { of, Observable } from 'rxjs';
 import {Pipe, PipeTransform} from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatDialog } from '@angular/material';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 @Pipe({name: 'orderby'})
 class MockPipe implements PipeTransform {
@@ -29,10 +30,31 @@ describe('CourseListComponent', () => {
   let fixture: ComponentFixture<CourseListComponent>;
   let searchTextService: SearchtextService;
   let courseService: CourseServiceService;
-
+  const courseTest = [{
+    date: '11-09-2018',
+    description: 'Learn about where you can find course descriptions,',
+    length: 200,
+    id: 1,
+    authors: [
+      {
+        id: '5b7a846290d6ff6894377fb5',
+        name : 'Decker Albert'
+      },
+      {
+        id: '5b7a84624010db4d640e0099',
+        name: 'Vincent Doyle'
+      },
+      {
+        id: '5b7a8462e720a86db64774e7',
+        name: 'Padilla Berger'
+      }
+    ],
+    name: 'VIDEO COURSE 2. ANGULAR ADVANCED',
+    isTopRated: false,
+  }];
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
+      imports: [ RouterTestingModule, HttpClientTestingModule ],
       declarations: [ CourseListComponent, MockPipe ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
@@ -56,7 +78,7 @@ describe('CourseListComponent', () => {
   });
 
   it('should call ngOnInit and retrieve the courses', () => {
-    const courseSpy = spyOn(courseService, 'getCourses');
+    const courseSpy = spyOn(courseService, 'getCourses').and.returnValue(of(courseTest));
     const searchTextSpy = spyOn(searchTextService, 'getSearchText').and.returnValue(of('Angular'));
 
     component.ngOnInit();

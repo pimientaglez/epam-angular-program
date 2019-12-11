@@ -21,7 +21,20 @@ describe('CourseComponent', () => {
     description: 'Learn about where you can find course descriptions,',
     length: 200,
     id: 1,
-    authors: ['Juan', 'Ricardo'],
+    authors: [
+      {
+        id: '5b7a846290d6ff6894377fb5',
+        name : 'Decker Albert'
+      },
+      {
+        id: '5b7a84624010db4d640e0099',
+        name: 'Vincent Doyle'
+      },
+      {
+        id: '5b7a8462e720a86db64774e7',
+        name: 'Padilla Berger'
+      }
+    ],
     name: 'VIDEO COURSE 2. ANGULAR ADVANCED',
     isTopRated: false,
   };
@@ -79,13 +92,26 @@ describe('Test Course Component with Host Component', () => {
   let testHost;
   let de;
   const courseTest = {
-    creationDate: new Date('11-09-2018'),
+    date: '11-09-2018',
     description: 'Learn about where you can find course descriptions,',
-    duration: 200,
+    length: 200,
     id: 1,
-    authors: ['Juan', 'Ricardo'],
-    title: 'VIDEO COURSE 2. ANGULAR ADVANCED',
-    topRated: false,
+    authors: [
+      {
+        id: '5b7a846290d6ff6894377fb5',
+        name : 'Decker Albert'
+      },
+      {
+        id: '5b7a84624010db4d640e0099',
+        name: 'Vincent Doyle'
+      },
+      {
+        id: '5b7a8462e720a86db64774e7',
+        name: 'Padilla Berger'
+      }
+    ],
+    name: 'VIDEO COURSE 2. ANGULAR ADVANCED',
+    isTopRated: false,
   };
 
   beforeEach(() => {

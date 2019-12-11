@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -13,6 +14,7 @@ describe('LoginComponent', () => {
       imports: [
         RouterTestingModule,
         FormsModule,
+        HttpClientTestingModule,
       ],
       declarations: [ LoginComponent ]
     })
