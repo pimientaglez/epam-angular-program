@@ -57,7 +57,7 @@ export class CourseListComponent implements OnInit {
     this.dialog.open(DialogConfirmationComponent, { data: { title: this.coursesToDisplay[courseIndex].name } })
       .afterClosed().subscribe(res => {
         if (res) {
-          this.courseService.deleteCourse(id).subscribe(res => {
+          this.courseService.deleteCourse(id).subscribe( () => {
             this.courseService.getCourses().subscribe(courses => {
               this.coursesFromService = courses;
               this.coursesToDisplay = courses;
@@ -71,7 +71,7 @@ export class CourseListComponent implements OnInit {
     this.router.navigate(['/courses', id]);
   }
 
-  loadMoreCourses(load: boolean){
+  loadMoreCourses(load: boolean) {
     if (load) {
       const count = this.coursesToDisplay.length + 5;
       this.courseService.getCourses('0', count.toString()).subscribe(courses => {

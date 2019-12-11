@@ -140,7 +140,7 @@ export class CourseServiceService {
 
   deleteCourse(id: number) {
     const deleteUrl = this.coursesUrl + '/' + id;
-    return this.http.delete<Object>(deleteUrl).pipe(
+    return this.http.delete(deleteUrl).pipe(
       catchError(this.handleError)
     );
   }

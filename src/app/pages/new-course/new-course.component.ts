@@ -9,7 +9,7 @@ import Author from 'src/app/models/Author';
   templateUrl: './new-course.component.html',
   styleUrls: ['./new-course.component.sass']
 })
-export class NewCourseComponent{
+export class NewCourseComponent {
   section = 'New Course';
   authorsFromService: Author[] = [];
   @ViewChild('authorInput', {static: false}) authorInput: ElementRef;
