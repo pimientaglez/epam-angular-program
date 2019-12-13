@@ -1,13 +1,13 @@
 <div class="us-main-content">
     <div 
-        *ngIf="!isUserLoggedIn && currentPath !== '/login'" 
+        *ngIf="currentPath !== '/login'" 
         class="login" 
         (click)="goToLoginPage()">
         <span><i class="material-icons"> portrait </i>
-            User Login</span> 
+            {{firstName}} {{lastName}}</span> 
     </div>
     <div 
-        *ngIf="isUserLoggedIn && currentPath !== '/login'" 
+        *ngIf="currentPath !== '/login'" 
         class="logoff"
         (click)="logOut()">
         <span><i class="material-icons">power_settings_new</i>
