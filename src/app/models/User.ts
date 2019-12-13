@@ -2,8 +2,8 @@ interface User {
     id: number;
     token: string;
     name: {
-        firstName: string,
-        lastName: string
+        first: string,
+        last: string
     };
     login: string;
     password: string;
