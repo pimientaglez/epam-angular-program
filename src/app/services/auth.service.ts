@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import User from '../models/User';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { endpoints } from '../utils/endpoints';
 import Token from '../models/Token';
 import Login from '../models/Login';
