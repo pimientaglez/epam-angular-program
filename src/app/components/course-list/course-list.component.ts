@@ -6,6 +6,8 @@ import { SearchtextService } from 'src/app/services/searchtext.service';
 import { MatDialog } from '@angular/material';
 import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component';
 import { Router } from '@angular/router';
+import { filter, debounce } from 'rxjs/operators';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-course-list',
@@ -35,7 +37,11 @@ export class CourseListComponent implements OnInit {
       this.coursesToDisplay = courses;
     });
 
-    this.textService.getSearchText().subscribe((text) => {
+    this.textService.getSearchText()
+    .pipe(
+      filter((val) => val.length >= 3),
+      debounce(() => timer(1000)))
+    .subscribe((text) => {
       if (text !== '') {
         this.courseService.filterCoursesByText(text).subscribe( courses => {
           this.coursesFiltered = courses;
