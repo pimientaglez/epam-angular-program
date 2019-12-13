@@ -22,16 +22,12 @@ export class AuthService {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
   }
-  isAuthenticated(): boolean {
+  isAuthenticated(): string {
     const token = localStorage.getItem('token');
-    if (token) {
-      return true;
-    } else {
-      return false;
-    }
+    return token;
   }
   getUserInfo() {
-    const token = localStorage.getItem('token');
+    const token = { token : localStorage.getItem('token').toString() };
     return this.http.post<User>(this.userUrl, token);
   }
   getAuthorizationToken() {

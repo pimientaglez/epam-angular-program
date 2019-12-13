@@ -7,16 +7,13 @@ import Course from '../../models/Course';
   styleUrls: ['./course.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CourseComponent implements OnChanges {
+export class CourseComponent {
   @Input() course: Course;
   @Output() delete: EventEmitter<number> = new EventEmitter<number>();
   @Output() edit: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {
 
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
   }
 
   deleteCourse(id: number) {
