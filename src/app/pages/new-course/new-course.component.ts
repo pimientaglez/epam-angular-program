@@ -3,6 +3,9 @@ import Course from 'src/app/models/Course';
 import { CourseServiceService } from 'src/app/services/course-service.service';
 import { Router } from '@angular/router';
 import Author from 'src/app/models/Author';
+import { LoadingService } from 'src/app/services/loading.service';
+import { filter, debounce } from 'rxjs/operators';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-new-course',
@@ -25,15 +28,22 @@ export class NewCourseComponent {
   };
   constructor(
     private courseService: CourseServiceService,
-    private router: Router) {}
+    private router: Router,
+    private loadingService: LoadingService, ) {}
 
   createNewCourse() {
+    this.loadingService.setLoadingStatus(true);
     this.courseService.createCourse(this.newCourse).subscribe((author) => {
+      this.loadingService.setLoadingStatus(false);
       this.router.navigate(['/']);
     });
   }
   searchAuthors(evt) {
-    this.courseService.getAuthors(evt.target.value).subscribe((authors: Author[]) => {
+    this.courseService.getAuthors(evt.target.value)
+    .pipe(
+      filter((val) => val.length >= 3),
+      debounce(() => timer(700)))
+    .subscribe((authors: Author[]) => {
       this.authorsFromService = authors;
     });
   }

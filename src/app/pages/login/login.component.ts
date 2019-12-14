@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { CourseServiceService } from 'src/app/services/course-service.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -16,16 +17,24 @@ export class LoginComponent {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private courses: CourseServiceService) { }
+    private loadingService: LoadingService, ) { }
 
   login() {
-      this.auth.login( { login: this.email, password: this.password } ).subscribe(
+      this.loadingService.setLoadingStatus(true);
+      this.auth.login( { login: this.email, password: this.password } )
+      .subscribe(
       res => {
+        setTimeout(() => {
           localStorage.setItem('user', this.email );
           localStorage.setItem('token', res.token);
+          this.loadingService.setLoadingStatus(false);
           this.router.navigate(['/']);
+        }, 1500);
         }, error => {
-          this.wrongCreds = true;
+          setTimeout( () => {
+            this.loadingService.setLoadingStatus(false);
+            this.wrongCreds = true;
+          }, 1000);
         }
       );
   }

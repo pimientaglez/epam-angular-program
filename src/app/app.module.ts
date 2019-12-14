@@ -22,7 +22,7 @@ import { DurationPipe } from './pipes/duration.pipe';
 import { OrderbyPipe } from './pipes/orderby.pipe';
 import { FilterbytextPipe } from './pipes/filterbytext.pipe';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule, MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { DialogConfirmationComponent } from './components/dialog-confirmation/dialog-confirmation.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NewCourseComponent } from './pages/new-course/new-course.component';
@@ -30,6 +30,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './utils/interceptor';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { Interceptor } from './utils/interceptor';
     NewCourseComponent,
     NotFoundComponent,
     EditComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +66,7 @@ import { Interceptor } from './utils/interceptor';
     MatDialogModule,
     MatButtonModule,
     HttpClientModule,
+    MatAutocompleteModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }

@@ -58,13 +58,14 @@
                         type="text" 
                         name="author" 
                         #authorInput
+                        matInput
+                        [matAutocomplete]="auto"
                         (keydown)="searchAuthors($event)">
-                        <div 
-                            class="author-service"
-                            (click)="addAuthor(author)"
-                            *ngFor="let author of authorsFromService">
-                            <div class="author-name">{{author.name}}</div>
-                        </div>
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let author of authorsFromService" [value]="author.name" (keydown.enter)="addAuthor(author)" >
+                            <span (click)="addAuthor(author)">{{author.name}}</span>
+                        </mat-option>
+                    </mat-autocomplete>
                 </div>
                 <div class="authors" *ngFor="let author of newCourse.authors; let i = index"><span>{{author.name}}</span><div class="remove-author" (click)="removeAuthor(i)">+</div></div>
             </div>

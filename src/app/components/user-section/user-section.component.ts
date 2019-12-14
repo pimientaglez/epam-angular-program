@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import {Router, NavigationEnd} from '@angular/router';
 import { Location } from '@angular/common';
 import User from 'src/app/models/User';
+import { LoadingService } from 'src/app/services/loading.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class UserSectionComponent implements OnInit, OnChanges {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private location: Location, ) {
+    private location: Location,
+    private loadingService: LoadingService, ) {
     }
     ngOnChanges(changes: SimpleChanges) {
       if (changes.userInfo.currentValue) {
@@ -37,11 +39,12 @@ export class UserSectionComponent implements OnInit, OnChanges {
       }
     });
   }
-  goToLoginPage() {
-    this.router.navigate(['/login']);
-  }
   logOut() {
-    this.authService.logout();
-    window.location.reload();
+    this.loadingService.setLoadingStatus(true);
+    setTimeout( () => {
+      this.authService.logout();
+      this.router.navigate(['/login']);
+      this.loadingService.setLoadingStatus(false);
+    }, 1500 );
   }
 }

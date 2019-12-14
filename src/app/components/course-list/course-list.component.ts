@@ -8,6 +8,7 @@ import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confi
 import { Router } from '@angular/router';
 import { filter, debounce } from 'rxjs/operators';
 import { timer } from 'rxjs';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-course-list',
@@ -26,26 +27,33 @@ export class CourseListComponent implements OnInit {
     private filterByText: FilterbytextPipe,
     private textService: SearchtextService,
     private router: Router,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private loadingService: LoadingService) {
     console.log('constructor');
   }
 
   ngOnInit() {
+    this.loadingService.setLoadingStatus(true);
     this.courseService.getCourses().subscribe(courses => {
       this.coursesFromService = courses;
       this.coursesToDisplay = courses;
+      this.loadingService.setLoadingStatus(false);
     });
 
     this.textService.getSearchText()
     .pipe(
       filter((val) => val.length >= 3),
-      debounce(() => timer(1000)))
+      debounce(() => timer(700)))
     .subscribe((text) => {
       if (text !== '') {
+        this.loadingService.setLoadingStatus(true);
         this.courseService.filterCoursesByText(text).subscribe( courses => {
-          this.coursesFiltered = courses;
-          this.coursesToDisplay = this.coursesFiltered;
-          this.hideLoadMore = false;
+          setTimeout(() => {
+            this.coursesFiltered = courses;
+            this.coursesToDisplay = this.coursesFiltered;
+            this.hideLoadMore = false;
+            this.loadingService.setLoadingStatus(false);
+          }, 1500);
         });
       } else {
         this.coursesToDisplay = this.coursesFromService;
@@ -62,11 +70,15 @@ export class CourseListComponent implements OnInit {
     this.dialog.open(DialogConfirmationComponent, { data: { title: this.coursesToDisplay[courseIndex].name } })
       .afterClosed().subscribe(res => {
         if (res) {
+          this.loadingService.setLoadingStatus(true);
           this.courseService.deleteCourse(id).subscribe( () => {
-            this.courseService.getCourses().subscribe(courses => {
-              this.coursesFromService = courses;
-              this.coursesToDisplay = courses;
-            });
+            setTimeout(() => {
+              this.courseService.getCourses().subscribe(courses => {
+                this.coursesFromService = courses;
+                this.coursesToDisplay = courses;
+                this.loadingService.setLoadingStatus(false);
+              });
+            }, 1500);
           });
         }
     });

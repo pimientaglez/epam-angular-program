@@ -8,11 +8,11 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   userInfo: User;
   constructor(
     private authService: AuthService,
-    private router: Router,) {
+    private router: Router, ) {
   }
 
   ngOnInit() {

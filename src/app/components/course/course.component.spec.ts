@@ -49,9 +49,6 @@ describe('CourseComponent', () => {
     fixture = TestBed.createComponent(CourseComponent);
     component = fixture.componentInstance;
     component.course = courseTest;
-    component.ngOnChanges({
-      course: new SimpleChange(null, component.course, false)
-    });
     fixture.detectChanges();
   });
 
