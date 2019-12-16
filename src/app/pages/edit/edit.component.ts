@@ -10,7 +10,20 @@ import { CourseServiceService } from 'src/app/services/course-service.service';
   styleUrls: ['./edit.component.sass']
 })
 export class EditComponent implements OnInit {
-  course: Course;
+  course: Course = {
+    id: 1,
+    name: '',
+    date: '',
+    length: 0,
+    isTopRated: true,
+    authors: [
+      {
+        id: '5b7a846290d6ff6894377fb5',
+        name : 'Decker Albert'
+      },
+    ],
+    description: '',
+  };
   section = '';
   constructor(
     private router: Router,
@@ -21,13 +34,17 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       const id = params.id;
-      this.course = this.courseService.getCourseById(Number(id));
+      this.courseService.getCourseById(Number(id)).subscribe( (res: Course) => {
+        this.course = res;
+      } );
       this.section = this.course.name;
     });
   }
 
   saveCourse() {
-    this.courseService.updateCourse(this.course);
+    this.courseService.updateCourse(this.course).subscribe((res: Course) => {
+      console.log('Course Updated!', res);
+    });
     this.router.navigate(['/courses']);
   }
   addAuthor(event?) {
