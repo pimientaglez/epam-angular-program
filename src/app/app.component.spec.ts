@@ -25,7 +25,7 @@ import { EditComponent } from './pages/edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { LoadingComponent } from './loading/loading.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
