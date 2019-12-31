@@ -1,12 +1,10 @@
-<div class="us-main-content">
+<div class="us-main-content" *ngIf="path.current !== '/login'" >
     <div 
-        *ngIf="currentPath !== '/login'" 
         class="login">
         <span><i class="material-icons"> portrait </i>
             {{firstName}} {{lastName}}</span> 
     </div>
     <div 
-        *ngIf="currentPath !== '/login'" 
         class="logoff"
         (click)="logOut()">
         <span><i class="material-icons">power_settings_new</i>
