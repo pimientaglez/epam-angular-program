@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import Course from 'src/app/models/Course';
 import { CourseServiceService } from 'src/app/services/course-service.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.sass']
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnInit, OnDestroy {
   course: Course = {
     id: 1,
     name: '',
@@ -25,6 +26,8 @@ export class EditComponent implements OnInit {
     description: '',
   };
   section = '';
+  private subscription: Subscription = new Subscription();
+
   constructor(
     private router: Router,
     private courseService: CourseServiceService,
@@ -32,19 +35,19 @@ export class EditComponent implements OnInit {
 
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
+    this.subscription.add(this.activatedRoute.params.subscribe(params => {
       const id = params.id;
-      this.courseService.getCourseById(Number(id)).subscribe( (res: Course) => {
+      this.subscription.add(this.courseService.getCourseById(Number(id)).subscribe( (res: Course) => {
         this.course = res;
-      } );
+      }));
       this.section = this.course.name;
-    });
+    }));
   }
 
   saveCourse() {
-    this.courseService.updateCourse(this.course).subscribe((res: Course) => {
+    this.subscription.add(this.courseService.updateCourse(this.course).subscribe((res: Course) => {
       console.log('Course Updated!', res);
-    });
+    }));
     this.router.navigate(['/courses']);
   }
   addAuthor(event?) {
@@ -57,6 +60,9 @@ export class EditComponent implements OnInit {
     console.log(this.course.authors);
   }
   backToCourses() {
-    this.router.navigate(['/courses']);
+    this.router.navigate(['/']);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
