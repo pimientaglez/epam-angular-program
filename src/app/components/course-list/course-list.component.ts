@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { filter, take, debounceTime } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { LoadingService } from 'src/app/services/loading.service';
+import { ErrorNotifierService } from 'src/app/services/error-notifier.service';
 
 @Component({
   selector: 'app-course-list',
@@ -30,8 +31,8 @@ export class CourseListComponent implements OnInit, OnDestroy {
     private textService: SearchtextService,
     private router: Router,
     public dialog: MatDialog,
-    private loadingService: LoadingService) {
-    console.log('constructor');
+    private loadingService: LoadingService,
+    private errorNotifierService: ErrorNotifierService, ) {
   }
 
   ngOnInit() {
@@ -40,7 +41,8 @@ export class CourseListComponent implements OnInit, OnDestroy {
       this.coursesFromService = courses;
       this.coursesToDisplay = courses;
       this.loadingService.setLoadingStatus(false);
-    }));
+      this.errorNotifierService.setErrorMsg('');
+    }, error => { this.shoeErrorMsg(error); } ));
 
     this.subscription.add(this.textService.getSearchText()
     .pipe(
@@ -55,13 +57,14 @@ export class CourseListComponent implements OnInit, OnDestroy {
             this.coursesToDisplay = this.coursesFiltered;
             this.hideLoadMore = false;
             this.loadingService.setLoadingStatus(false);
+            this.errorNotifierService.setErrorMsg('');
           }, 1500);
-        });
+        }, error => { this.shoeErrorMsg(error); });
       } else {
         this.coursesToDisplay = this.coursesFromService;
         this.hideLoadMore = false;
       }
-    }));
+    }, error => { this.shoeErrorMsg(error); } ));
   }
   deleteCourse(id: number) {
     this.openConfirmationDialog(id);
@@ -79,11 +82,12 @@ export class CourseListComponent implements OnInit, OnDestroy {
                 this.coursesFromService = courses;
                 this.coursesToDisplay = courses;
                 this.loadingService.setLoadingStatus(false);
-              }));
+                this.errorNotifierService.setErrorMsg('');
+              }, error => { this.shoeErrorMsg(error); }));
             }, 1500);
-          }));
+          }, error => { this.shoeErrorMsg(error); }));
         }
-    });
+    }, error => { this.shoeErrorMsg(error); } );
   }
 
   editCourse(id: number) {
@@ -92,14 +96,21 @@ export class CourseListComponent implements OnInit, OnDestroy {
 
   loadMoreCourses(load: boolean) {
     if (load) {
+      this.loadingService.setLoadingStatus(true);
       const count = this.coursesToDisplay.length + 5;
       this.subscription.add(this.courseService.getCourses(this.START_COUNT, count.toString()).subscribe(courses => {
         this.coursesToDisplay = courses;
+        this.loadingService.setLoadingStatus(false);
+        this.errorNotifierService.setErrorMsg('');
         if (this.coursesToDisplay.length < count) {
           this.hideLoadMore = true;
         }
-      }));
+      }, error => { this.shoeErrorMsg(error); } ));
     }
+  }
+  shoeErrorMsg(e) {
+    this.errorNotifierService.setErrorMsg(e);
+    this.loadingService.setLoadingStatus(false);
   }
 
   ngOnDestroy() {

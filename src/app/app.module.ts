@@ -31,6 +31,7 @@ import { EditComponent } from './pages/edit/edit.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './utils/interceptor';
 import { LoadingComponent } from './components/loading/loading.component';
+import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     NotFoundComponent,
     EditComponent,
     LoadingComponent,
+    ErrorMsgComponent,
   ],
   imports: [
     BrowserModule,

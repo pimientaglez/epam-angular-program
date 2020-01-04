@@ -6,6 +6,7 @@ import Author from 'src/app/models/Author';
 import { LoadingService } from 'src/app/services/loading.service';
 import { filter, debounce } from 'rxjs/operators';
 import { timer, Subscription } from 'rxjs';
+import { ErrorNotifierService } from 'src/app/services/error-notifier.service';
 
 @Component({
   selector: 'app-new-course',
@@ -31,14 +32,15 @@ export class NewCourseComponent implements OnDestroy {
   constructor(
     private courseService: CourseServiceService,
     private router: Router,
-    private loadingService: LoadingService, ) {}
+    private loadingService: LoadingService, 
+    private errorNotifierService: ErrorNotifierService,) {}
 
   createNewCourse() {
     this.loadingService.setLoadingStatus(true);
     this.subscription.add(this.courseService.createCourse(this.newCourse).subscribe((author) => {
       this.loadingService.setLoadingStatus(false);
       this.router.navigate(['/']);
-    }));
+    }, error => { this.shoeErrorMsg(error); }));
   }
   searchAuthors(evt) {
     this.subscription.add(this.courseService.getAuthors(evt.target.value)
@@ -47,7 +49,7 @@ export class NewCourseComponent implements OnDestroy {
       debounce(() => timer(700)))
       .subscribe((authors: Author[]) => {
         this.authorsFromService = authors;
-      }));
+      }, error => { this.shoeErrorMsg(error); }));
     }
     addAuthor(author) {
       const found = this.newCourse.authors.find((item: Author) => {
@@ -65,6 +67,10 @@ export class NewCourseComponent implements OnDestroy {
     }
     backToCourses() {
       this.router.navigate(['/']);
+    }
+    shoeErrorMsg(e) {
+      this.errorNotifierService.setErrorMsg(e);
+      this.loadingService.setLoadingStatus(false);
     }
     ngOnDestroy() {
       this.subscription.unsubscribe();

@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { CourseServiceService } from 'src/app/services/course-service.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { ErrorNotifierService } from 'src/app/services/error-notifier.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private loadingService: LoadingService, ) { }
+    private loadingService: LoadingService,
+    private errorNotifierService: ErrorNotifierService, ) { }
 
   login() {
       this.loadingService.setLoadingStatus(true);
@@ -28,14 +30,20 @@ export class LoginComponent {
           localStorage.setItem('user', this.email );
           localStorage.setItem('token', res.token);
           this.loadingService.setLoadingStatus(false);
+          this.errorNotifierService.setErrorMsg('');
           this.router.navigate(['/']);
         }, 1500);
         }, error => {
           setTimeout( () => {
             this.loadingService.setLoadingStatus(false);
+            this.errorNotifierService.setErrorMsg(error);
             this.wrongCreds = true;
           }, 1000);
         }
       );
+  }
+  shoeErrorMsg(e) {
+    this.errorNotifierService.setErrorMsg(e);
+    this.loadingService.setLoadingStatus(false);
   }
 }

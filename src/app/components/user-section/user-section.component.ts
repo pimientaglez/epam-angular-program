@@ -1,11 +1,8 @@
-import { Component, Input, OnChanges, SimpleChanges, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import {Router, NavigationEnd} from '@angular/router';
-import { Location } from '@angular/common';
 import User from 'src/app/models/User';
 import { LoadingService } from 'src/app/services/loading.service';
-import { Subscription } from 'rxjs';
-
 
 @Component({
   selector: 'app-user-section',
@@ -13,14 +10,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./user-section.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserSectionComponent implements OnChanges, OnDestroy  {
+export class UserSectionComponent implements OnChanges {
   public id: number;
   @Input() userInfo: User;
   @Input() path;
   isUserLoggedIn: string;
   firstName: string;
   lastName: string;
-  private subscription: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -44,8 +40,5 @@ export class UserSectionComponent implements OnChanges, OnDestroy  {
       this.router.navigate(['/login']);
       this.loadingService.setLoadingStatus(false);
     }, 1500 );
-  }
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

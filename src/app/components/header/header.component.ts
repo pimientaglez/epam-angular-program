@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
+import { LoadingService } from 'src/app/services/loading.service';
+import { ErrorNotifierService } from 'src/app/services/error-notifier.service';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +21,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     private location: Location,
+    private loadingService: LoadingService,
+    private errorNotifierService: ErrorNotifierService,
     ) {
   }
 
@@ -28,11 +32,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (this.authService.isAuthenticated()) {
           this.authService.getUserInfo().subscribe( (res: User) => {
             this.userInfo = res;
-          });
+            this.errorNotifierService.setErrorMsg('');
+          }, error => { this.shoeErrorMsg(error); });
         }
         this.path =  { current: this.location.path() };
       }
     });
+  }
+  shoeErrorMsg(e) {
+    this.errorNotifierService.setErrorMsg(e);
+    this.loadingService.setLoadingStatus(false);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
