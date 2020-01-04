@@ -23,8 +23,7 @@ export class UserSectionComponent implements OnChanges {
     private router: Router,
     private loadingService: LoadingService, ) {
     }
-    ngOnChanges(changes: SimpleChanges) {
-      console.log(changes);
+    ngOnChanges(changes: SimpleChanges) { 
       if (changes.userInfo) {
         if (changes.userInfo.currentValue) {
           this.firstName = changes.userInfo.currentValue.name.first;

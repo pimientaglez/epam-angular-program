@@ -23,9 +23,10 @@ import { NewCourseComponent } from './pages/new-course/new-course.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoadingComponent } from './components/loading/loading.component';
+import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -35,6 +36,8 @@ describe('AppComponent', () => {
         FormsModule,
         MatDialogModule,
         HttpClientTestingModule,
+        MatAutocompleteModule,
+        MatInputModule,
       ],
       declarations: [
         AppComponent,
@@ -61,6 +64,7 @@ describe('AppComponent', () => {
         NotFoundComponent,
         EditComponent,
         LoadingComponent,
+        ErrorMsgComponent,
       ],
     }).compileComponents();
   }));

@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { PipeTransform, Pipe } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatAutocompleteModule } from '@angular/material';
 
 @Pipe({name: 'duration'})
 class MockPipe implements PipeTransform {
@@ -27,7 +28,7 @@ describe('NewCourseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, FormsModule, HttpClientTestingModule ],
+      imports: [ RouterTestingModule, FormsModule, HttpClientTestingModule, MatAutocompleteModule ],
       declarations: [
         NewCourseComponent,
         BreadcrumbComponent,
