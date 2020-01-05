@@ -32,8 +32,8 @@ export class NewCourseComponent implements OnDestroy {
   constructor(
     private courseService: CourseServiceService,
     private router: Router,
-    private loadingService: LoadingService, 
-    private errorNotifierService: ErrorNotifierService,) {}
+    private loadingService: LoadingService,
+    private errorNotifierService: ErrorNotifierService, ) {}
 
   createNewCourse() {
     this.loadingService.setLoadingStatus(true);

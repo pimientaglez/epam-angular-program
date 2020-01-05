@@ -19,7 +19,7 @@ export class ErrorMsgComponent implements OnInit {
       } else {
         this.errorMessage = msg;
       }
-    })
+    });
   }
 
 }
