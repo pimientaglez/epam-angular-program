@@ -33,11 +33,12 @@ import { Interceptor } from './utils/interceptor';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+//import { reducers, metaReducers } from './store/reducers';
+import * as fromApp from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './app.effects';
+import { AuthEffects } from './store/effects/auth.effects';
 
 @NgModule({
   declarations: [
@@ -77,15 +78,9 @@ import { AppEffects } from './app.effects';
     MatAutocompleteModule,
     MatInputModule,
     MatOptionModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
-    }),
+    StoreModule.forRoot({ app: fromApp.reducer  }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }

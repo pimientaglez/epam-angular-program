@@ -4,6 +4,11 @@ import { Router } from '@angular/router';
 import { CourseServiceService } from 'src/app/services/course-service.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ErrorNotifierService } from 'src/app/services/error-notifier.service';
+import { Store } from '@ngrx/store';
+import { login } from '../../store/actions/auth.actions';
+
+import Login from 'src/app/models/Login';
+
 
 @Component({
   selector: 'app-login',
@@ -19,11 +24,13 @@ export class LoginComponent {
     private auth: AuthService,
     private router: Router,
     private loadingService: LoadingService,
-    private errorNotifierService: ErrorNotifierService, ) { }
+    private errorNotifierService: ErrorNotifierService,
+    private store: Store<{ credentials: Login }>) { }
 
   login() {
       this.loadingService.setLoadingStatus(true);
-      this.auth.login( { login: this.email, password: this.password } )
+      this.store.dispatch(login({ login: this.email, password: this.password }));
+      /* this.auth.login( { login: this.email, password: this.password } )
       .subscribe(
       res => {
         setTimeout(() => {
@@ -40,7 +47,7 @@ export class LoginComponent {
             this.wrongCreds = true;
           }, 1000);
         }
-      );
+      ); */
   }
   shoeErrorMsg(e) {
     this.errorNotifierService.setErrorMsg(e);
