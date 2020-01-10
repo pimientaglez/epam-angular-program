@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { of, EMPTY } from 'rxjs';
-import { catchError, exhaustMap, map, mapTo, mergeMap } from 'rxjs/operators';
-import { login, loginComplete } from '../actions/auth.actions';
+import { of } from 'rxjs';
+import { catchError, map, switchMap, tap, finalize } from 'rxjs/operators';
 import * as LoginPageActions from '../actions/auth.actions';
 import { AuthService } from '../../services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ErrorNotifierService } from 'src/app/services/error-notifier.service';
 import { Router } from '@angular/router';
+import Token from 'src/app/models/Token';
+import User from 'src/app/models/User';
 
 @Injectable()
 export class AuthEffects {
@@ -15,25 +16,44 @@ export class AuthEffects {
     login$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(LoginPageActions.login),
-            exhaustMap( action => {
+            switchMap( action => {
                 return this.authService.login({login: action.login, password: action.password})
                 .pipe(
-                    map( user => {
+                    tap( (data: Token) => {
                         localStorage.setItem('user', action.login );
-                        localStorage.setItem('token', user.token);
-                        this.loadingService.setLoadingStatus(false);
+                        localStorage.setItem('token', data.token);
                         this.errorNotifierService.setErrorMsg('');
-                        this.router.navigate(['/']);
-                        this.authService.getUserInfo().pipe(
-                            map(res =>{
-                                return LoginPageActions.loginComplete({user: res})
-                            })
-                        );
-                    }), catchError( error => of(error) )
+                    }),
+                    map(() => {
+                        return LoginPageActions.getUser();
+                    }),
+                    catchError( error => {
+                        this.errorNotifierService.setErrorMsg(error);
+                        return of(LoginPageActions.loginFailure({error}));
+                    } ),
+                    finalize( () => {
+                        this.loadingService.setLoadingStatus(false);
+                    })
                 );
             })
         );
     });
+
+    getUser$ = createEffect( () => {
+        return this.actions$.pipe(
+            ofType(LoginPageActions.getUser),
+            switchMap( action => {
+                return this.authService.getUserInfo().
+                    pipe(
+                        map( (res: User) => {
+                            this.router.navigate(['/']);
+                            return LoginPageActions.loginComplete({user: res});
+                        })
+                    )
+            })
+        )
+    });
+
 
     constructor(
         private actions$: Actions,

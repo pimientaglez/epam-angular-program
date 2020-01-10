@@ -6,6 +6,9 @@ export const login = createAction(
     '[Login Page] Login',
     props< Login >()
 );
+export const getUser = createAction(
+    '[Login Page] Get User',
+);
 
 export const loginComplete = createAction(
     '[Login Page] Login Complete',

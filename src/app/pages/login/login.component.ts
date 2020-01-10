@@ -30,24 +30,6 @@ export class LoginComponent {
   login() {
       this.loadingService.setLoadingStatus(true);
       this.store.dispatch(login({ login: this.email, password: this.password }));
-      /* this.auth.login( { login: this.email, password: this.password } )
-      .subscribe(
-      res => {
-        setTimeout(() => {
-          localStorage.setItem('user', this.email );
-          localStorage.setItem('token', res.token);
-          this.loadingService.setLoadingStatus(false);
-          this.errorNotifierService.setErrorMsg('');
-          this.router.navigate(['/']);
-        }, 1500);
-        }, error => {
-          setTimeout( () => {
-            this.loadingService.setLoadingStatus(false);
-            this.errorNotifierService.setErrorMsg(error);
-            this.wrongCreds = true;
-          }, 1000);
-        }
-      ); */
   }
   shoeErrorMsg(e) {
     this.errorNotifierService.setErrorMsg(e);
