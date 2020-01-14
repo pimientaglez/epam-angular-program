@@ -10,6 +10,8 @@ import { filter, take, debounceTime } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ErrorNotifierService } from 'src/app/services/error-notifier.service';
+import { Store } from '@ngrx/store';
+import { loadCourses, loadCoursesByText } from '../../store/actions/course.actions';
 
 @Component({
   selector: 'app-course-list',
@@ -32,17 +34,18 @@ export class CourseListComponent implements OnInit, OnDestroy {
     private router: Router,
     public dialog: MatDialog,
     private loadingService: LoadingService,
-    private errorNotifierService: ErrorNotifierService, ) {
+    private errorNotifierService: ErrorNotifierService,
+    private store: Store<{ courses }> ) {
   }
 
   ngOnInit() {
     this.loadingService.setLoadingStatus(true);
-    this.subscription.add(this.courseService.getCourses().pipe(take(1)).subscribe(courses => {
-      this.coursesFromService = courses;
-      this.coursesToDisplay = courses;
-      this.loadingService.setLoadingStatus(false);
-      this.errorNotifierService.setErrorMsg('');
-    }, error => { this.shoeErrorMsg(error); } ));
+    this.store.select('courses').subscribe((courses) => {
+      this.coursesFromService = courses.coursesFromService;
+      this.coursesToDisplay = courses.coursesToDisplay;
+      this.coursesFiltered = courses.coursesFiltered;
+    });
+    this.store.dispatch(loadCourses());
 
     this.subscription.add(this.textService.getSearchText()
     .pipe(
@@ -51,15 +54,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
     .subscribe((text) => {
       if (text !== '') {
         this.loadingService.setLoadingStatus(true);
-        this.courseService.filterCoursesByText(text).subscribe( courses => {
-          setTimeout(() => {
-            this.coursesFiltered = courses;
-            this.coursesToDisplay = this.coursesFiltered;
-            this.hideLoadMore = false;
-            this.loadingService.setLoadingStatus(false);
-            this.errorNotifierService.setErrorMsg('');
-          }, 1500);
-        }, error => { this.shoeErrorMsg(error); });
+        this.store.dispatch(loadCoursesByText({text}));
       } else {
         this.coursesToDisplay = this.coursesFromService;
         this.hideLoadMore = false;

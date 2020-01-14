@@ -33,12 +33,13 @@ import { Interceptor } from './utils/interceptor';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 import { StoreModule } from '@ngrx/store';
-//import { reducers, metaReducers } from './store/reducers';
-import * as fromApp from './store/reducers';
+import * as authReducer from './store/reducers/auth.reducer';
+import * as courseReducer from './store/reducers/course.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
+import { CourseEffects } from './store/effects/course.effects';
 
 @NgModule({
   declarations: [
@@ -78,9 +79,9 @@ import { AuthEffects } from './store/effects/auth.effects';
     MatAutocompleteModule,
     MatInputModule,
     MatOptionModule,
-    StoreModule.forRoot({ app: fromApp.reducer  }),
+    StoreModule.forRoot({ auth: authReducer.reducer, courses: courseReducer.reducer  }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, CourseEffects]),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }

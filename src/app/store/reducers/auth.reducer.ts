@@ -1,9 +1,4 @@
 import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer,
   createReducer,
   on,
   Action
@@ -11,15 +6,24 @@ import {
 import { environment } from '../../../environments/environment';
 import User from 'src/app/models/User';
 import * as LoginPageActions from '../actions/auth.actions';
+import Course from 'src/app/models/Course';
 
 export interface State {
   User: User | null;
   isAuthenticated: boolean;
+  loadingCourses: boolean;
+  coursesToDisplay: Course[];
+  coursesFiltered: Course[];
+  coursesFromService: Course[];
 }
 
 export const initialState: State = {
   User: null,
-  isAuthenticated: false
+  isAuthenticated: false,
+  loadingCourses: false,
+  coursesToDisplay: [],
+  coursesFiltered: [],
+  coursesFromService: [],
 };
 
 const loginReducer = createReducer(
