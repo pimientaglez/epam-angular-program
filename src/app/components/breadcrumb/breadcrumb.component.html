@@ -1,6 +1,6 @@
 <div class="bc-main-content">
     <div class="top" >
-        <span class="courses" (click)="goBack()">Courses</span>
+        <span class="courses" (click)="goBack()">{{ 'course.breadcrumb' | translate }}</span>
         <span class="section" *ngIf="section"> / {{section}}</span>
     </div>
 </div>

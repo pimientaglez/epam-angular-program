@@ -1,0 +1,19 @@
+{
+    "login": {
+        "title": "Login",
+        "email": "E-mail",
+        "password": "Password",
+        "required": "required",
+        "forgot": "Forgot password",
+        "loginButton": "Login"
+    },
+    "course": {
+        "addButton": "Add Course",
+        "edit": "Edit",
+        "delete": "Delete",
+        "breadcrumb": "Courses",
+        "loadMore": "Load More",
+        "logOut": "Log Out",
+        "footer": "Copyright © Videocourses. All rights reserved"
+    }
+}

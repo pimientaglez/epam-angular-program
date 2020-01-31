@@ -28,7 +28,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { NewCourseComponent } from './pages/new-course/new-course.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { EditComponent } from './pages/edit/edit.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { Interceptor } from './utils/interceptor';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
@@ -41,6 +41,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { CourseEffects } from './store/effects/course.effects';
 import { CurstomDateComponent } from './components/curstom-date/curstom-date.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateComponent } from 'src/app/components/translate/translate.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,7 @@ import { CurstomDateComponent } from './components/curstom-date/curstom-date.com
     LoadingComponent,
     ErrorMsgComponent,
     CurstomDateComponent,
+    TranslateComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +89,13 @@ import { CurstomDateComponent } from './components/curstom-date/curstom-date.com
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([AuthEffects, CourseEffects]),
     ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
@@ -93,3 +104,8 @@ import { CurstomDateComponent } from './components/curstom-date/curstom-date.com
   entryComponents: [DialogConfirmationComponent]
 })
 export class AppModule { }
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

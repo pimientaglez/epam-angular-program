@@ -1,0 +1,19 @@
+{
+    "login": {
+        "title": "Login",
+        "email": "Usuario",
+        "password": "Contraseña",
+        "required": "requerido",
+        "forgot": "Contraseña Olvidada",
+        "loginButton": "Entrar"
+    },
+    "course": {
+        "addButton": "Agregar Curso",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "breadcrumb": "Cursos",
+        "loadMore": "Cargar Más",
+        "logOut": "Salir",
+        "footer": "Copyright © Videocourses. Todos los derechos reservados"
+    }
+}
