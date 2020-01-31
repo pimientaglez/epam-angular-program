@@ -22,7 +22,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { NewCourseComponent } from './pages/new-course/new-course.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { EditComponent } from './pages/edit/edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoadingComponent } from './components/loading/loading.component';
@@ -38,6 +38,7 @@ describe('AppComponent', () => {
         HttpClientTestingModule,
         MatAutocompleteModule,
         MatInputModule,
+        ReactiveFormsModule,
       ],
       declarations: [
         AppComponent,

@@ -3,7 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CoursesPageComponent } from './courses-page.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from '../login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
@@ -13,6 +13,7 @@ describe('CoursesPageComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
+        ReactiveFormsModule,
         RouterTestingModule.withRoutes(
         [{path: 'login', component: LoginComponent}]
       ) ],

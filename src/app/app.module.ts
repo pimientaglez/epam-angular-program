@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -40,6 +40,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { CourseEffects } from './store/effects/course.effects';
+import { CurstomDateComponent } from './components/curstom-date/curstom-date.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { CourseEffects } from './store/effects/course.effects';
     EditComponent,
     LoadingComponent,
     ErrorMsgComponent,
+    CurstomDateComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +84,7 @@ import { CourseEffects } from './store/effects/course.effects';
     StoreModule.forRoot({ auth: authReducer.reducer, courses: courseReducer.reducer  }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([AuthEffects, CourseEffects]),
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }

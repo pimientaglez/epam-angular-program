@@ -1,29 +1,37 @@
 <div class="login-main-content">
     <div class="login-card">
-        <form action="" (ngSubmit)="login()">
+        <form action="" (ngSubmit)="login()" [formGroup]="loginForm">
             <h3>Login</h3>
             <div *ngIf="wrongCreds" class="wrong"><p>wrong email or password</p></div>
             <div class="email-container">
-                <span class="email-tag">E-mail:</span>
+                <span class="email-tag">E-mail: <span class="email-req" *ngIf="email.invalid && email.touched">Email is required</span></span>
                 <span class="required">*required</span>
                 <br>
                 <div class="input-email">
-                    <input [(ngModel)]="email" name="email" type="text" placeholder="Enter e-mail">
+                    <input 
+                    formControlName="email" 
+                    name="email" 
+                    type="text" 
+                    placeholder="Enter e-mail">
                 </div>
             </div>
             <div class="password-container">
-                <span class="password-tag">Password:</span>
+                <span class="password-tag">Password: <span class="pass-req" *ngIf="password.invalid && password.touched">Password is required</span></span>
                 <span class="required">*required</span>
                 <br>
                 <div class="input-pass">
-                    <input [(ngModel)]="password" name="password" type="password" placeholder="Enter Password">
+                    <input 
+                        formControlName="password" 
+                        name="password" 
+                        type="password" 
+                        placeholder="Enter Password">
                 </div>
             </div>
             <div class="forgot">
                 <span><a href="">Forgot password?</a></span>
             </div>
             <div class="login-button">
-                <button type="submit">Login</button>
+                <button [disabled]="loginForm.invalid" type="submit">Login</button>
             </div>
         </form>
     </div> 

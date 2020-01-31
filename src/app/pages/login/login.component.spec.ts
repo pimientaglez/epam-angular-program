@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -18,6 +17,7 @@ describe('LoginComponent', () => {
       imports: [
         RouterTestingModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpClientTestingModule,
         StoreModule.forRoot({ auth: authReducer.reducer, courses: courseReducer.reducer  }),
       ],

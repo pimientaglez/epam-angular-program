@@ -1,13 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditComponent } from './edit.component';
 import { BreadcrumbComponent } from 'src/app/components/breadcrumb/breadcrumb.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DurationPipe } from 'src/app/pipes/duration.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CourseServiceService } from 'src/app/services/course-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatAutocompleteModule } from '@angular/material';
 
 class MockActivatedRoute extends ActivatedRoute {
   constructor() {
@@ -54,6 +55,8 @@ describe('EditComponent', () => {
         FormsModule,
         RouterTestingModule,
         HttpClientTestingModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule
       ],
       providers: [{
         provide: ActivatedRoute,

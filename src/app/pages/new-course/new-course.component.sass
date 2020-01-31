@@ -138,7 +138,7 @@
         .authors-container
             margin: 10px 0
             display: table
-            width: 45%
+            width: 100%
             .authors-tag
                 font-size: 14px
             .required
@@ -153,8 +153,23 @@
                 height: 40px
                 width: 100%
                 margin-top: 10px
-                input
-                    width: 90%
+                .authors
+                    display: inline-block
+                    background-color: #f2f3f7
+                    color: #6c7283
+                    height: 20px
+                    margin: 5px
+                    padding: 5px 10px
+                    border-radius: 3px
+                    position: relative
+                    div.remove-author
+                        margin-left: 10px
+                        cursor: pointer
+                        transform: rotate(45deg)
+                        display: inline-block
+                input.mat-input-element
+                    width: 45%
+                    height: 32px
                 .author-service
                     width: 100%
                     display: block
@@ -167,20 +182,6 @@
                     .author-name
                         display: inline-block
                         margin: 15px
-            .authors
-                display: inline-block
-                background-color: #f2f3f7
-                color: #6c7283
-                height: 50%
-                margin: 5px
-                padding: 5px 10px
-                border-radius: 3px
-                position: relative
-                div.remove-author
-                    margin-left: 10px
-                    cursor: pointer
-                    transform: rotate(45deg)
-                    display: inline-block
             input
                 width: 40%
                 height: 36px
@@ -212,3 +213,6 @@
 input, textarea
     color: #525462
     font-family: 'Source Sans Pro', sans-serif
+span[class^="req-"]
+    color: red
+    font-size: 12px

@@ -1,0 +1,8 @@
+<input 
+    [(ngModel)] = 'date'
+    (change)="onChange($event.target.value)"
+    (keyup)="onChange($event.target.value)"
+    type="text" 
+    placeholder="dd/MM/yyyy" 
+    name="date"
+    class="date">

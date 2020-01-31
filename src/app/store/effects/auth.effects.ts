@@ -49,9 +49,9 @@ export class AuthEffects {
                             this.router.navigate(['/']);
                             return LoginPageActions.loginComplete({user: res});
                         })
-                    )
+                    );
             })
-        )
+        );
     });
 
 
@@ -63,3 +63,4 @@ export class AuthEffects {
         private router: Router,
     ) {}
 }
+

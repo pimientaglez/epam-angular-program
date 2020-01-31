@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NewCourseComponent } from './new-course.component';
 import { BreadcrumbComponent } from 'src/app/components/breadcrumb/breadcrumb.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { PipeTransform, Pipe } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatAutocompleteModule } from '@angular/material';
@@ -28,11 +28,11 @@ describe('NewCourseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, FormsModule, HttpClientTestingModule, MatAutocompleteModule ],
+      imports: [ RouterTestingModule, FormsModule, HttpClientTestingModule, MatAutocompleteModule, ReactiveFormsModule ],
       declarations: [
         NewCourseComponent,
         BreadcrumbComponent,
-        MockPipe,
+        MockPipe
       ]
     })
     .compileComponents();

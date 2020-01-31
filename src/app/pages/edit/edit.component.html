@@ -2,51 +2,55 @@
 <div class="edit-main-content">
     <div class="edit-course-card">
         <form 
+            [formGroup]="editForm"
             action="" 
             (ngSubmit)="saveCourse()"
             (keydown.enter)="$event.preventDefault()"
             (keydown.shift.enter)="$event.preventDefault()">
             <h3>Edit Course</h3>
             <div class="title-container">
-                <span class="title-tag">Title:</span>
+                <span class="title-tag">Title:
+                    <span class="req-title" *ngIf="name.invalid && name.touched">Title is required</span>
+                    <span class="req-title" *ngIf="name.errors?.maxlength">Title max length 50</span>
+                </span>
                 <span class="required">*required</span>
                 <br>
                 <div class="input-title">
-                    <input name="title" [(ngModel)]="course.name" type="text" placeholder="Enter title">
+                    <input name="name" formControlName="name" type="text" placeholder="Enter title">
                 </div>
             </div>
             <div class="desc-container">
-                <span class="desc-tag">Description:</span>
+                <span class="desc-tag">Description:
+                    <span class="req-description" *ngIf="description.invalid && description.touched">Description is required</span>
+                    <span class="req-description" *ngIf="description.errors?.maxlength">Description max length is 500</span>
+                </span>
                 <span class="required">*required</span>
                 <br>
                 <div class="textarea-desc">
-                    <textarea name="desc" [(ngModel)]="course.description" placeholder="Add description" cols="30" rows="10"></textarea>
+                    <textarea formControlName="description" name="description" placeholder="Add description" cols="30" rows="10"></textarea>
                 </div>
             </div>
 
             <div class="duration-container">
                 <div class="duration-titles">
-                    <span class="duration-tag">Duration:</span>
+                    <span class="duration-tag">Duration: <span class="req-duration" *ngIf="length.invalid && length.touched">Duration is required</span></span>
                     <span class="required">*required</span>
                 </div>
                 <div class="duration-cont-input">
                     <div class="input-duration">
-                        <input type="text" placeholder="minutes" name="duration" [(ngModel)]="course.length">
+                        <input formControlName="length" type="number" placeholder="minutes" name="duration" >
                     </div>
-                    <div class="duration-pipe">{{course.length | duration}}</div>
+                    <div class="duration-pipe">{{editForm.value.length | duration}}</div>
                 </div>
             </div>
             <div class="date-container">
-                <span class="date-tag">Date:</span>
+                <span class="date-tag">Date: 
+                    <span class="req-date" *ngIf="date.invalid && date.touched">Date is required</span>
+                </span>
                 <span class="required">*required</span>
                 <br>
                 <div class="input-date">
-                    <input 
-                        type="text" 
-                        placeholder="mm-dd-yy" 
-                        name="date" 
-                        [ngModel]="course.date | date: 'dd MMM, yyyy'" 
-                        (ngModelChange)="course.date=$event">
+                    <input formControlName="date" type="date" placeholder="dd/MM/yyyy"  name="date" >
                 </div>
             </div>
             <div class="authors-container">
@@ -54,13 +58,24 @@
                 <span class="required">*required</span>
                 <br>
                 <div class="input-authors">
-                    <input (keydown.enter)="addAuthor($event)" type="text" name="authors" placeholder="Start typing">
+                    <div class="authors" *ngFor="let author of course.authors; let i = index"><span>{{author.name}}</span><div class="remove-author" (click)="removeAuthor(i)">+</div></div>
+                    <input 
+                        type="text" 
+                        name="author" 
+                        #authorInput
+                        matInput
+                        [matAutocomplete]="auto"
+                        (keydown)="searchAuthors($event)">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let author of authorsFromService" [value]="author.name" (keydown.enter)="addAuthor(author)" >
+                            <span (click)="addAuthor(author)">{{author.name}}</span>
+                        </mat-option>
+                    </mat-autocomplete>
                 </div>
-                <div class="authors" *ngFor="let author of course.authors; let i = index"><span>{{author.name}}</span><div class="remove-author" (click)="removeAuthor(i)">+</div></div>
             </div>
             <div class="button-containers">
                 <button mat-flat-button class="cancel" (click)="backToCourses()">Cancel</button>
-                <button mat-flat-button class="save" type="submit">Save</button>
+                <button class="save" [disabled]="editForm.invalid" type="submit">Save</button>
             </div>
         </form>
     </div> 
